@@ -30,9 +30,9 @@ Airtable's REST API allows for 100 items to be fetched in one request. In order 
 
 **Type:** Feature
 
-**Subject:** Filter input for products list
+**Subject:** Filter input for products list (client-side)
 
-**Description:** It should be possible for the user to filter the list of products on the app's home screen. Add a text input on top of the product list that filters the list of products for matching product codes as you type (product code contains filter string). A reset button lets you clear the text input and return to the unfiltered products list.
+**Description:** It should be possible for the user to filter the list of products on the app's home screen. Add a text input on top of the product list that filters the list of products for matching product codes as you type (product code contains filter string). The filtering should not make a backend request. A reset button lets you clear the text input and return to the unfiltered products list.
 
 **Tipp:** Create a `setFilter` action along with a search input on top of the `HomeScreen` component to enable the user to filter for inventory items by product code. The same action can be used to reset the products list
 
