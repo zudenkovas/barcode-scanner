@@ -2,14 +2,20 @@
 
 Inventory is a small utility app that could be used in a logistics company. It has two use cases:
 
-b. Adding products to the inventory using a bar code scanner
-a. Viewing the inventory of products
+1. Adding products to the inventory using a bar code scanner 
+2. Viewing the inventory of products  
+
+Screenshots: 
+
+<img src="./HomeScreen.jpg" height=480>
+<img src="./CameraScreen.jpg" height=480>
 
 The app is built using Expo, TypeScript, React Native Paper and Redux. The backend is a REST API provided by Airtable.
 
-Project management has created tasks related to the app and put them on the Kanban board. Pick a single task and try to solve it within a reasonable amount of time (~2h).
 
 ## Tasks
+
+Project management has created tasks related to the app and put them on the Kanban board. Pick a single task and try to solve it within a reasonable amount of time (~2h).
 
 ---
 
