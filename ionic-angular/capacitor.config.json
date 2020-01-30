@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.inventory",
-  "appName": "ionic-angular",
+  "appName": "Inventory",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
