@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.inventory",
+  "appName": "ionic-angular",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
