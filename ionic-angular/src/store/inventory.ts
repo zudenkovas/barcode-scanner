@@ -27,47 +27,6 @@ const initialState = {
   allIds: []
 };
 
-export const inventoryReducer: Reducer<InventoryState, InventoryAction> = (
-  state = initialState,
-  action
-) => {
-  switch (action.type) {
-    case FETCH_INVENTORY:
-      return {
-        ...state,
-        fetching: true
-      };
-    case FETCH_INVENTORY_SUCCESS:
-      return {
-        ...state,
-        fetching: false,
-        byId: action.payload.reduce((byId, item) => {
-          byId[item.id] = item;
-          return byId;
-        }, {}),
-        allIds: action.payload.map(item => item.id)
-      };
-    case FETCH_INVENTORY_ERROR:
-      return {
-        ...state,
-        fetching: false
-      };
-    case SEND_INVENTORY:
-      return {
-        ...state,
-        sending: true
-      };
-    case SEND_INVENTORY_SUCCESS:
-    case SEND_INVENTORY_ERROR:
-      return {
-        ...state,
-        sending: false
-      };
-    default:
-      return state;
-  }
-};
-
 const FETCH_INVENTORY = 'FETCH_INVENTORY';
 const FETCH_INVENTORY_SUCCESS = 'FETCH_INVENTORY_SUCCESS';
 const FETCH_INVENTORY_ERROR = 'FETCH_INVENTORY_ERROR';
@@ -178,6 +137,47 @@ export class InventoryActions {
       });
   };
 }
+
+export const inventoryReducer: Reducer<InventoryState, InventoryAction> = (
+  state = initialState,
+  action
+) => {
+  switch (action.type) {
+    case FETCH_INVENTORY:
+      return {
+        ...state,
+        fetching: true
+      };
+    case FETCH_INVENTORY_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        byId: action.payload.reduce((byId, item) => {
+          byId[item.id] = item;
+          return byId;
+        }, {}),
+        allIds: action.payload.map(item => item.id)
+      };
+    case FETCH_INVENTORY_ERROR:
+      return {
+        ...state,
+        fetching: false
+      };
+    case SEND_INVENTORY:
+      return {
+        ...state,
+        sending: true
+      };
+    case SEND_INVENTORY_SUCCESS:
+    case SEND_INVENTORY_ERROR:
+      return {
+        ...state,
+        sending: false
+      };
+    default:
+      return state;
+  }
+};
 
 export const selectors = {
   selectInventory: (state: RootState) =>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select } from '@angular-redux/store';
 import {
   selectors as inventorySelectors,
@@ -17,11 +17,11 @@ import { AlertController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage {
+export class HomePage implements OnInit {
   @select(inventorySelectors.selectInventory) inventory$: Observable<
     Inventory[]
   >;
-  @select(inventorySelectors.selectFetching) fetching$: Observable<Boolean>;
+  @select(inventorySelectors.selectFetching) fetching$: Observable<boolean>;
 
   constructor(
     private store: NgRedux<RootState>,
