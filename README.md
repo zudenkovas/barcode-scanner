@@ -10,12 +10,18 @@ Screenshots:
 <img src="./HomeScreen.jpg" height=480>
 <img src="./CameraScreen.jpg" height=480>
 
-The app is built using Expo, TypeScript, React Native Paper and Redux. The backend is a REST API provided by Airtable.
+
+This repository contains two implementations of the app: 
+
+* React Native: Expo, TypeScript, React Native Paper and Redux. 
+* Ionic: Capacitor, Redux, Phonegap Plugin Barcode Scanner.
+
+The backend is a REST API provided by Airtable.
 
 
 ## Tasks
 
-Project management has created tasks related to the app and put them on the Kanban board. Pick a single task and try to solve it within a reasonable amount of time (~2h).
+Project management has created tasks related to the app and put them on the Kanban board. Pick an implementation and try to solve one of the tasks within a reasonable amount of time (~2h).
 
 ---
 
@@ -40,7 +46,7 @@ Airtable's REST API allows for 100 items to be fetched in one request. In order 
 
 **Description:** It should be possible for the user to filter the list of products on the app's home screen. Add a text input on top of the product list that filters the list of products for matching product codes as you type (product code contains filter string). The filtering should not make a backend request. A reset button lets you clear the text input and return to the unfiltered products list.
 
-**Tipp:** Create a `setFilter` action along with a search input on top of the `HomeScreen` component to enable the user to filter for inventory items by product code. The same action can be used to reset the products list
+**Tipp:** Create a `setFilter` action along with a search input on top of the home screen to enable the user to filter for inventory items by product code. The same action can be used to reset the products list
 
 ---
 
