@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:delete -->
+<html ng-csp="no-unsafe-eval"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="theme-color" content="#ffffff">
+        <title>Airtable API - Inventory</title>
+
+        <link nonce="KFFj6OIPSrwE" rel="stylesheet" type="text/css" href="./Airtable API - Inventory_files/docs.css">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://airtable.com/images/favicon/baymax/apple-touch-icon.png">
+<link rel="manifest" href="https://airtable.com/images/favicon/baymax/manifest.json">
+<link rel="mask-icon" href="https://airtable.com/images/favicon/baymax/safari-pinned-tab.svg" color="#e82453">
+
+<link id="favIconCanvas" rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB40lEQVRYR+2XPWgUQRTHf+8y66lgVMJ1dkbt/WhiTjiCJIWNiiIakCuOkyAoiIpJFSSNCjlEFGxiE7RTIYJg4ceZTjHYiHIpxSIpAgZvN/vxZDciHooL3q5L4KYalpn3//GfN2/2CcDXcrFgWcGoKoeA3vBbiqOhwoyHNdF998WihOLGBK+BnSmK/h5a+Ohi9cu3Sl9NkHP/VfyHmAo1aVb2N4DtWQAAjRBAMxKPZDsAa8ABycH6jatp0lxOPF1iHejaN4BVGY+EV25fIZirJwrRAVi7Dqy7cBPZ1ov35F6UE2ZwGOneGs11eQn/6TTeswex+fLPDuSvP0Y294DThPyGPwq50zfwXz76K0T7AGF4z8W9P0nw9jm5vSWsUxdBBF1awLl0OGUAVZyx4+jil59C4fHkdu2OwOyRUroA+nkeZ/x0i4g5cgYzNAwaYFcPpAsQfHjDyuT5VoDBk5ijI6CKXS2mDDBXjyrkr8N0ADoOJOrAnhJW9erqc3zrMsH72Wiev/YQ2VLAf/cK985oaxIePIE5djaZaxhbzNtcEFuK24wfuz1bAEWzb0zsSl9NM2rNJGzNtFws2MafBdkRe2DJLvjkebl+if5gysWCY/wxRcL2PO0+cV7RGd/rmtg0VV/4DhDHX8KKMgknAAAAAElFTkSuQmCC">
+
+
+        <script type="text/javascript" async="" src="./Airtable API - Inventory_files/f.txt"></script><script type="text/javascript" async="" src="./Airtable API - Inventory_files/analytics.js"></script><script src="./Airtable API - Inventory_files/993259944031613" async=""></script><script src="./Airtable API - Inventory_files/identity.js" async=""></script><script type="text/javascript" async="" src="./Airtable API - Inventory_files/fbevents.js"></script><script type="text/javascript" async="" src="./Airtable API - Inventory_files/analytics.min.js"></script><script async="" src="./Airtable API - Inventory_files/analytics.js"></script><script nonce="KFFj6OIPSrwE">
+            var _rollbarConfig = (function() {
+                
+        var regularExpressionsToFilterRollbarStackTraces = [/adroll\.com/,/intercomcdn\.com/,/intercom\.io/,/cdn\.segment\.com/];
+        var rollbarCheckIgnoreFunctionToFilterUnwantedClientSideExceptions = function rollbarCheckIgnoreFunctionToFilterUnwantedClientSideExceptions(
+isUncaught,
+args,
+payload)
+{
+  var frames =
+  payload &&
+  payload.data &&
+  payload.data.body &&
+  payload.data.body.trace &&
+  payload.data.body.trace.frames;
+  if (frames) {
+    var badFrames = false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    frames.forEach(function (frame) {
+      if (badFrames) {
+        return;
+      }
+      if (frame && frame.filename) {
+        regularExpressionsToFilterRollbarStackTraces.forEach(function (regExp) {
+          if (badFrames) {
+            return;
+          }
+          if (regExp.test(frame.filename)) {
+            badFrames = true;
+          }
+        });
+      }
+    });
+    if (badFrames) {
+      return true;
+    }
+    if (frames.length === 1 && frames[0].filename === '(unknown)') {
+      var exception = payload.data.body.trace.exception;
+      var messagesToIgnore = [
+      'Script error.',
+      "undefined is not an object (evaluating 'window.__pad.performLoop')"];
+
+      if (exception && messagesToIgnore.indexOf(exception.message) > 0) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+        var sanitizeUrl = function sanitizeUrl(url) {
+  if (url.match(/shr(\w{14})/)) {
+    var replacedUrl = url.replace(/shr\w{14}/g, function (match) {
+      return match.slice(0, 7) + '**********';
+    });
+    url = replacedUrl;
+  }
+  if (url.match(/auth\/passwordReset/)) {
+    url = url.replace(/(auth\/passwordReset\/)(.*)$/, '$1*');
+  }
+  url = url.replace(/(\?.*)$/, function (queryString) {
+    return sanitizeQueryStringByReplacingQueryValuesWithStar(queryString);
+  });
+  return url;
+};
+        var sanitizeQueryStringByReplacingQueryValuesWithStar = function sanitizeQueryStringByReplacingQueryValuesWithStar(queryString) {
+  var sanitizedQueryString = queryString.
+  replace(/(=)([^&]+)(&)/g, '$1*$3').
+  replace(/(=)([^&]+)$/, '$1*');
+  return sanitizedQueryString;
+};
+        var rollbarTransformFunctionToRemoveSensitiveDataFromReportedClientSideExceptions = function _rollbarTransformFunctionToRemoveSensitiveDataFromReportedClientSideExceptions(
+payload)
+{
+  if (payload.data && payload.data.request) {
+    if (payload.data.request.url) {
+      payload.data.request.url = sanitizeUrl(payload.data.request.url);
+    }
+    if (payload.data.request.query_string) {
+      payload.data.request.query_string = sanitizeQueryStringByReplacingQueryValuesWithStar(
+      payload.data.request.query_string);
+
+    }
+  }
+};
+    
+
+                var rollbarConfig = {"rollbarJsUrl":"https:\u002F\u002Fcdnjs.cloudflare.com\u002Fajax\u002Flibs\u002Frollbar.js\u002F1.9.0\u002Frollbar.nojson.min.js","accessToken":"5a2d5967127341068ca03d066e325b6a","captureUncaught":true,"captureUnhandledRejections":false,"uncaughtErrorLevel":"error","maxItems":1000,"itemsPerMinute":60,"payload":{"environment":"production","person":{"id":"usrozj4vcsSDbIDEA"},"client":{"javascript":{"source_map_enabled":true,"code_version":"e7eabab25d9f780d28f6e94fea6778c4a3b6798b","guess_uncaught_frames":true}}}};
+                rollbarConfig.checkIgnore = rollbarCheckIgnoreFunctionToFilterUnwantedClientSideExceptions;
+                rollbarConfig.transform = rollbarTransformFunctionToRemoveSensitiveDataFromReportedClientSideExceptions;
+                return rollbarConfig;
+            })();
+
+            !function(r){function e(t){if(o[t])return o[t].exports;var n=o[t]={exports:{},id:t,loaded:!1};return r[t].call(n.exports,n,n.exports,e),n.loaded=!0,n.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var t=o(1).Rollbar,n=o(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://d37gvrvc0wt4s1.cloudfront.net/js/v1.9/rollbar.min.js";var a=t.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,e){"use strict";function o(r){return function(){try{return r.apply(this,arguments)}catch(e){try{console.error("[Rollbar]: Internal error",e)}catch(o){}}}}function t(r,e,o){window._rollbarWrappedError&&(o[4]||(o[4]=window._rollbarWrappedError),o[5]||(o[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,o),e&&e.apply(window,o)}function n(r){var e=function(){var e=Array.prototype.slice.call(arguments,0);t(r,r._rollbarOldOnError,e)};return e.belongsToShim=!0,e}function a(r){this.shimId=++c,this.notifier=null,this.parentShim=r,this._rollbarOldOnError=null}function i(r){var e=a;return o(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var o=this,t="scope"===r;t&&(o=new e(this));var n=Array.prototype.slice.call(arguments,0),a={shim:o,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),t?o:void 0})}function l(r,e){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){var o=e.addEventListener;e.addEventListener=function(e,t,n){o.call(this,e,r.wrap(t),n)};var t=e.removeEventListener;e.removeEventListener=function(r,e,o){t.call(this,r,e&&e._wrapped?e._wrapped:e,o)}}}var c=0;a.init=function(r,e){var t=e.globalAlias||"Rollbar";if("object"==typeof r[t])return r[t];r._rollbarShimQueue=[],r._rollbarWrappedError=null,e=e||{};var i=new a;return o(function(){if(i.configure(e),e.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=n(i);var o,a,c="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(o=0;o<c.length;++o)a=c[o],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return e.captureUnhandledRejections&&(i._unhandledRejectionHandler=function(r){var e=r.reason,o=r.promise,t=r.detail;!e&&t&&(e=t.reason,o=t.promise),i.unhandledRejection(e,o)},r.addEventListener("unhandledrejection",i._unhandledRejectionHandler)),r[t]=i,i})()},a.prototype.loadFull=function(r,e,t,n,a){var i=function(){var e;if(void 0===r._rollbarPayloadQueue){var o,t,n,i;for(e=new Error("rollbar.js did not load");o=r._rollbarShimQueue.shift();)for(n=o.args,i=0;i<n.length;++i)if(t=n[i],"function"==typeof t){t(e);break}}"function"==typeof a&&a(e)},l=!1,
+                c=e.createElement("script"),d=e.getElementsByTagName("script")[0],p=d.parentNode;
+                c.nonce='KFFj6OIPSrwE',c.crossOrigin="",c.src=n.rollbarJsUrl,c.async=!t,
+                c.onload=c.onreadystatechange=o(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){c.onload=c.onreadystatechange=null;try{p.removeChild(c)}catch(r){}l=!0,i()}}),p.insertBefore(c,d)},a.prototype.wrap=function(r,e){try{var o;if(o="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(e){throw e._rollbarContext=o()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e,e}},r._wrapped._isWrap=!0;for(var t in r)r.hasOwnProperty(t)&&(r._wrapped[t]=r[t])}return r._wrapped}catch(n){return r}};for(var d="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError,unhandledRejection".split(","),p=0;p<d.length;++p)a.prototype[d[p]]=i(d[p]);r.exports={Rollbar:a,_rollbarWindowOnError:t}},function(r,e){"use strict";r.exports=function(r,e){return function(o){if(!o&&!window._rollbarInitialized){var t=window.RollbarNotifier,n=e||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,t.processPayloads()}}}}]);
+        </script>
+
+
+        <script nonce="KFFj6OIPSrwE">
+            window.application = {"id":"appJkRh9E7qNlXOav","name":"Inventory","tables":[{"id":"tblnj2ZiVCQ2tQ0Qr","name":"Home","columns":[{"id":"fldQjoq2d6345nYbU","name":"Product Code","type":"text","typeOptions":null},{"id":"fldiPxwDS5ZrZx2lT","name":"Quantity","type":"number","typeOptions":{"format":"integer","negative":false,"validatorName":"positive"}},{"id":"fldMDf4CXoOc6rFRs","name":"Posted","type":"formula","typeOptions":{"dateFormat":"US","isDateTime":true,"timeFormat":"12hour","timeZone":"client","displayType":"createdTime","formulaTextParsed":"CREATED_TIME()","dependencies":{"referencedColumnIdsForValue":[]},"resultType":"date"}}],"sampleRows":[{"id":"recFBwxNdLmnSJXNP","fields":{"Product Code":"4015732007155","Posted":"2020-08-04T08:19:04.000Z"},"createdTime":"2020-08-04T08:19:04.000Z"},{"id":"reckraxMWGVfxeou6","fields":{"Product Code":"4015732007155","Posted":"2020-08-04T08:19:02.000Z"},"createdTime":"2020-08-04T08:19:02.000Z"},{"id":"recuSvw4MiOTDOQ6u","fields":{"Product Code":"http:\u002F\u002Fwww.qrcode-monkey.com","Posted":"2020-05-19T14:00:57.000Z"},"createdTime":"2020-05-19T14:00:57.000Z"},{"id":"recXZ8BSKi0m1VX75","fields":{"Product Code":"http:\u002F\u002Fwww.qrcode-monkey.com","Posted":"2020-05-19T14:00:53.000Z"},"createdTime":"2020-05-19T14:00:53.000Z"},{"id":"recLM0W7LZntN7qe7","fields":{"Product Code":"http:\u002F\u002Fwww.qrcode-monkey.com","Posted":"2020-05-19T14:00:46.000Z"},"createdTime":"2020-05-19T14:00:46.000Z"},{"id":"recOpy1oGBSVR871b","fields":{"Product Code":"http:\u002F\u002Fwww.qrcode-monkey.com","Posted":"2020-05-19T14:00:39.000Z"},"createdTime":"2020-05-19T14:00:39.000Z"},{"id":"recyVRjWfIa7na8DR","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T10:07:11.000Z"},"createdTime":"2020-02-11T10:07:11.000Z"},{"id":"rec4vzEQc8UaW2559","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T10:03:38.000Z"},"createdTime":"2020-02-11T10:03:38.000Z"},{"id":"rec8qgHw6YdObT6WN","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T09:58:45.000Z"},"createdTime":"2020-02-11T09:58:45.000Z"},{"id":"recqZu0UJJv6Lp3xJ","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T09:25:34.000Z"},"createdTime":"2020-02-11T09:25:34.000Z"},{"id":"recjWeSPSn9iN5K8b","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T09:08:41.000Z"},"createdTime":"2020-02-11T09:08:41.000Z"},{"id":"receemDEtfuMuQMCY","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T08:54:19.000Z"},"createdTime":"2020-02-11T08:54:19.000Z"},{"id":"recR7NGwcqBM6dCjL","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T08:53:53.000Z"},"createdTime":"2020-02-11T08:53:53.000Z"},{"id":"recmizAAwQPCecPH2","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T08:50:06.000Z"},"createdTime":"2020-02-11T08:50:06.000Z"},{"id":"recDl99WQEN21R3hk","fields":{"Product Code":"08571007","Posted":"2020-02-11T08:47:02.000Z"},"createdTime":"2020-02-11T08:47:02.000Z"},{"id":"recI7IktdtMVJ4MFl","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T08:46:24.000Z"},"createdTime":"2020-02-11T08:46:24.000Z"},{"id":"recah6qj0q6LxvJvj","fields":{"Product Code":"4015732009050","Posted":"2020-02-11T08:43:37.000Z"},"createdTime":"2020-02-11T08:43:37.000Z"},{"id":"rec7Hd0YNf328Wamq","fields":{"Product Code":"4015732009050","Posted":"2020-02-10T16:40:33.000Z"},"createdTime":"2020-02-10T16:40:33.000Z"},{"id":"recgBtysLecC0ZHQK","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T16:44:37.000Z"},"createdTime":"2020-01-30T16:44:37.000Z"},{"id":"recOZfs4lzO016RUU","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T15:25:14.000Z"},"createdTime":"2020-01-30T15:25:14.000Z"},{"id":"recpify4LeJWVsGf4","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T15:12:58.000Z"},"createdTime":"2020-01-30T15:12:58.000Z"},{"id":"recL651YhpAgLTQl7","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T15:09:52.000Z"},"createdTime":"2020-01-30T15:09:52.000Z"},{"id":"rec39YecjUVBRlH15","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T15:06:31.000Z"},"createdTime":"2020-01-30T15:06:31.000Z"},{"id":"reczbvIfekXxd0Av0","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T15:01:56.000Z"},"createdTime":"2020-01-30T15:01:56.000Z"},{"id":"recjLf7acC8CZ0D52","fields":{"Product Code":"4015732007155","Posted":"2020-01-30T14:53:43.000Z"},"createdTime":"2020-01-30T14:53:43.000Z"},{"id":"recDhgGiXRNLfAyQy","fields":{"Product Code":"4003273571891","Posted":"2020-01-30T10:57:20.000Z"},"createdTime":"2020-01-30T10:57:20.000Z"},{"id":"rec5skV3w5HJ8eQGc","fields":{"Product Code":"4003273571891","Posted":"2020-01-30T10:57:19.000Z"},"createdTime":"2020-01-30T10:57:19.000Z"},{"id":"recIaZJ15hJLn1yU7","fields":{"Product Code":"4003273571891","Posted":"2020-01-30T10:56:54.000Z"},"createdTime":"2020-01-30T10:56:54.000Z"},{"id":"rec6x5wXh0M4LQBk7","fields":{"Product Code":"4003273571891","Posted":"2020-01-30T10:56:53.000Z"},"createdTime":"2020-01-30T10:56:53.000Z"},{"id":"recWa6A93AIrLXQM8","fields":{"Product Code":"9788381292528","Posted":"2020-01-14T17:31:33.000Z"},"createdTime":"2020-01-14T17:31:33.000Z"},{"id":"rec9M9JGxMfQYM9Zb","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:37.000Z"},"createdTime":"2020-01-13T13:40:37.000Z"},{"id":"rec9dHuSMCjcbRHC4","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:36.000Z"},"createdTime":"2020-01-13T13:40:36.000Z"},{"id":"recYdAPmLalTxLDh6","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:29.000Z"},"createdTime":"2020-01-13T13:40:29.000Z"},{"id":"recxY2kqWgsmleScg","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:26.000Z"},"createdTime":"2020-01-13T13:40:26.000Z"},{"id":"recNtnQ0sSxPv3Zov","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:25.000Z"},"createdTime":"2020-01-13T13:40:25.000Z"},{"id":"rectTldAvqowjfr0c","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:23.000Z"},"createdTime":"2020-01-13T13:40:23.000Z"},{"id":"recdX5kQexdzE2Bod","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:22.000Z"},"createdTime":"2020-01-13T13:40:22.000Z"},{"id":"recpn5xw8XHpvGefT","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:13.000Z"},"createdTime":"2020-01-13T13:40:13.000Z"},{"id":"rec4eDthhcpXceejk","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:09.000Z"},"createdTime":"2020-01-13T13:40:09.000Z"},{"id":"reciDPaxDXsoS2Amj","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:08.000Z"},"createdTime":"2020-01-13T13:40:08.000Z"},{"id":"recL9xB7U8NvuZ9VX","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:06.000Z"},"createdTime":"2020-01-13T13:40:06.000Z"},{"id":"recoVvpehsWg0efFQ","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:06.000Z"},"createdTime":"2020-01-13T13:40:06.000Z"},{"id":"rec9Qn7zanAv55WO0","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:05.000Z"},"createdTime":"2020-01-13T13:40:05.000Z"},{"id":"rec1pNeYXdYkSr54r","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:03.000Z"},"createdTime":"2020-01-13T13:40:03.000Z"},{"id":"recFzqVgmHNA35lTB","fields":{"Product Code":"0841710102321","Posted":"2020-01-13T13:40:02.000Z"},"createdTime":"2020-01-13T13:40:02.000Z"},{"id":"recznuZSYrlTDsaKL","fields":{"Product Code":"4002846034504","Posted":"2020-01-13T13:05:20.000Z"},"createdTime":"2020-01-13T13:05:20.000Z"},{"id":"recZyDmgFx570tFcZ","fields":{"Product Code":"4002846034504","Posted":"2020-01-13T13:05:19.000Z"},"createdTime":"2020-01-13T13:05:19.000Z"},{"id":"rec343YQYTf8uWXPH","fields":{"Product Code":"4010355061423","Posted":"2020-01-13T12:56:24.000Z"},"createdTime":"2020-01-13T12:56:24.000Z"},{"id":"recykwMCADbPKqmkR","fields":{"Product Code":"4010355061423","Posted":"2020-01-13T12:56:23.000Z"},"createdTime":"2020-01-13T12:56:23.000Z"},{"id":"recC6OAT9YHJQiGVl","fields":{"Product Code":"453","Quantity":0,"Posted":"2020-01-13T12:54:00.000Z"},"createdTime":"2020-01-13T12:54:00.000Z"},{"id":"recij3wXak0EohmGN","fields":{"Product Code":"234423234234","Quantity":0,"Posted":"2020-01-13T12:54:00.000Z"},"createdTime":"2020-01-13T12:54:00.000Z"},{"id":"recBieVw8CzSagfWM","fields":{"Product Code":"453345453","Quantity":0,"Posted":"2020-01-13T12:53:59.000Z"},"createdTime":"2020-01-13T12:53:59.000Z"},{"id":"recsK2MjA41erlpdy","fields":{"Product Code":"232345543534","Quantity":0,"Posted":"2020-01-13T12:53:58.000Z"},"createdTime":"2020-01-13T12:53:58.000Z"},{"id":"recTxRfQU4IAjbhYm","fields":{"Product Code":"56567675765","Quantity":0,"Posted":"2020-01-13T12:53:58.000Z"},"createdTime":"2020-01-13T12:53:58.000Z"},{"id":"recqZYhNYDwvlUraI","fields":{"Product Code":"756","Quantity":0,"Posted":"2020-01-13T12:53:57.000Z"},"createdTime":"2020-01-13T12:53:57.000Z"},{"id":"recq3b4cSiiJmLbts","fields":{"Product Code":"345345345","Quantity":0,"Posted":"2020-01-13T12:53:57.000Z"},"createdTime":"2020-01-13T12:53:57.000Z"},{"id":"recWEN98FaynDHUSw","fields":{"Product Code":"645456456456","Quantity":0,"Posted":"2020-01-13T12:53:56.000Z"},"createdTime":"2020-01-13T12:53:56.000Z"},{"id":"recgFHwvLb9k5qFhI","fields":{"Product Code":"456456645","Quantity":0,"Posted":"2020-01-13T12:53:56.000Z"},"createdTime":"2020-01-13T12:53:56.000Z"},{"id":"recLTk644SOksMzAS","fields":{"Product Code":"56445665","Quantity":0,"Posted":"2020-01-13T12:53:49.000Z"},"createdTime":"2020-01-13T12:53:49.000Z"},{"id":"reco0Um3Pn496ETRz","fields":{"Product Code":"23234243423","Quantity":0,"Posted":"2020-01-13T12:53:49.000Z"},"createdTime":"2020-01-13T12:53:49.000Z"},{"id":"recyGvgKOteGjXuSU","fields":{"Product Code":"678567576","Quantity":0,"Posted":"2020-01-13T12:53:49.000Z"},"createdTime":"2020-01-13T12:53:49.000Z"},{"id":"recPoYGJPvsKQkZlT","fields":{"Product Code":"345345345","Quantity":0,"Posted":"2020-01-13T12:53:48.000Z"},"createdTime":"2020-01-13T12:53:48.000Z"},{"id":"recuRXrPMiYn4sE7j","fields":{"Product Code":"4566453456645","Quantity":0,"Posted":"2020-01-13T12:53:48.000Z"},"createdTime":"2020-01-13T12:53:48.000Z"},{"id":"recMiqxiGddv4Ho0H","fields":{"Product Code":"6575665","Quantity":0,"Posted":"2020-01-13T12:53:47.000Z"},"createdTime":"2020-01-13T12:53:47.000Z"},{"id":"recjFgVLGP4hajdqI","fields":{"Product Code":"345345","Quantity":0,"Posted":"2020-01-13T12:53:47.000Z"},"createdTime":"2020-01-13T12:53:47.000Z"},{"id":"rec54otm1bMWjM5Wr","fields":{"Product Code":"909890","Quantity":0,"Posted":"2020-01-13T12:53:47.000Z"},"createdTime":"2020-01-13T12:53:47.000Z"},{"id":"recmWAa2HJAKMjFCf","fields":{"Product Code":"345345345345","Quantity":0,"Posted":"2020-01-13T12:53:46.000Z"},"createdTime":"2020-01-13T12:53:46.000Z"},{"id":"recE3mZEMHPPyM9wo","fields":{"Product Code":"567567567","Quantity":0,"Posted":"2020-01-13T12:53:46.000Z"},"createdTime":"2020-01-13T12:53:46.000Z"},{"id":"recbwly8OmjfL7alT","fields":{"Product Code":"567456456","Quantity":0,"Posted":"2020-01-13T12:53:45.000Z"},"createdTime":"2020-01-13T12:53:45.000Z"},{"id":"recEoGVYwC1PLrYHa","fields":{"Product Code":"675675453","Quantity":0,"Posted":"2020-01-13T12:53:39.000Z"},"createdTime":"2020-01-13T12:53:39.000Z"},{"id":"recjWcpeIIuUZVD76","fields":{"Product Code":"453453234243","Quantity":0,"Posted":"2020-01-13T12:53:35.000Z"},"createdTime":"2020-01-13T12:53:35.000Z"},{"id":"recRiGsPEomV6kXh1","fields":{"Product Code":"54345345453","Quantity":0,"Posted":"2020-01-13T12:53:28.000Z"},"createdTime":"2020-01-13T12:53:28.000Z"},{"id":"recyW9B9AK2flfsH7","fields":{"Product Code":"678","Quantity":0,"Posted":"2020-01-13T12:53:27.000Z"},"createdTime":"2020-01-13T12:53:27.000Z"},{"id":"recwEK0jRoPE1v4V3","fields":{"Product Code":"789867678","Quantity":0,"Posted":"2020-01-13T12:53:23.000Z"},"createdTime":"2020-01-13T12:53:23.000Z"},{"id":"recgv4uA0pr3dfe7n","fields":{"Product Code":"423234345456","Quantity":0,"Posted":"2020-01-13T12:53:23.000Z"},"createdTime":"2020-01-13T12:53:23.000Z"},{"id":"recHe08dFom0FVvFP","fields":{"Product Code":"567456345","Quantity":0,"Posted":"2020-01-13T12:53:22.000Z"},"createdTime":"2020-01-13T12:53:22.000Z"},{"id":"recHJ8GHYPhMN3wH0","fields":{"Product Code":"6787645645345","Quantity":0,"Posted":"2020-01-13T12:53:22.000Z"},"createdTime":"2020-01-13T12:53:22.000Z"},{"id":"recmX5kjctFPNnNee","fields":{"Product Code":"345234234243","Quantity":0,"Posted":"2020-01-13T12:53:21.000Z"},"createdTime":"2020-01-13T12:53:21.000Z"},{"id":"recm9lqW50OpXPhTj","fields":{"Product Code":"453345354345","Quantity":0,"Posted":"2020-01-13T12:53:21.000Z"},"createdTime":"2020-01-13T12:53:21.000Z"},{"id":"recwsXVgAMwhl7vo3","fields":{"Product Code":"456456456456","Quantity":0,"Posted":"2020-01-13T12:53:20.000Z"},"createdTime":"2020-01-13T12:53:20.000Z"},{"id":"recCYIScCrGfoFPv0","fields":{"Product Code":"78645456456","Quantity":0,"Posted":"2020-01-13T12:53:20.000Z"},"createdTime":"2020-01-13T12:53:20.000Z"},{"id":"recyZlkEKS2HqrSo1","fields":{"Product Code":"6787856645456","Quantity":0,"Posted":"2020-01-13T12:53:12.000Z"},"createdTime":"2020-01-13T12:53:12.000Z"},{"id":"rec8KYRnIfCSn6GEG","fields":{"Product Code":"453345456674578","Quantity":0,"Posted":"2020-01-13T12:53:12.000Z"},"createdTime":"2020-01-13T12:53:12.000Z"},{"id":"recg3O3efORp5WGAb","fields":{"Product Code":"345435354435","Quantity":0,"Posted":"2020-01-13T12:53:12.000Z"},"createdTime":"2020-01-13T12:53:12.000Z"},{"id":"recOdw3hYhMly3Wcj","fields":{"Product Code":"234234","Quantity":0,"Posted":"2020-01-13T12:53:11.000Z"},"createdTime":"2020-01-13T12:53:11.000Z"},{"id":"rec5s1amv6NnfVX8S","fields":{"Product Code":"345345","Quantity":0,"Posted":"2020-01-13T12:53:11.000Z"},"createdTime":"2020-01-13T12:53:11.000Z"},{"id":"recM4QHtPZfIycBR4","fields":{"Product Code":"234234456645345","Quantity":0,"Posted":"2020-01-13T12:53:07.000Z"},"createdTime":"2020-01-13T12:53:07.000Z"},{"id":"rect5xqZpOLGWZuKy","fields":{"Product Code":"453567645453","Quantity":0,"Posted":"2020-01-13T12:53:07.000Z"},"createdTime":"2020-01-13T12:53:07.000Z"},{"id":"recZTeGH5V4PRumNW","fields":{"Product Code":"423423456657","Quantity":0,"Posted":"2020-01-13T12:53:07.000Z"},"createdTime":"2020-01-13T12:53:07.000Z"},{"id":"recxM48jRTZo0obfr","fields":{"Product Code":"678678567456","Quantity":0,"Posted":"2020-01-13T12:53:06.000Z"},"createdTime":"2020-01-13T12:53:06.000Z"},{"id":"recZdGbWEAV2rZw9n","fields":{"Product Code":"678678567675","Quantity":0,"Posted":"2020-01-13T12:53:06.000Z"},"createdTime":"2020-01-13T12:53:06.000Z"},{"id":"rec04XbO2IPrqeHHu","fields":{"Product Code":"34423423","Quantity":0,"Posted":"2020-01-13T12:53:02.000Z"},"createdTime":"2020-01-13T12:53:02.000Z"},{"id":"recevFwrbY3axjOQL","fields":{"Product Code":"65","Quantity":0,"Posted":"2020-01-13T12:53:02.000Z"},"createdTime":"2020-01-13T12:53:02.000Z"},{"id":"recYv55K6QW2bg06T","fields":{"Product Code":"45364536456456","Quantity":0,"Posted":"2020-01-13T12:53:01.000Z"},"createdTime":"2020-01-13T12:53:01.000Z"},{"id":"rec6HgdraoobVcurI","fields":{"Product Code":"345345435","Quantity":0,"Posted":"2020-01-13T12:53:01.000Z"},"createdTime":"2020-01-13T12:53:01.000Z"},{"id":"recxT2vdVOfmKLWch","fields":{"Product Code":"2342342453345","Quantity":0,"Posted":"2020-01-13T12:53:00.000Z"},"createdTime":"2020-01-13T12:53:00.000Z"},{"id":"rec1LysF2Srkkxcbe","fields":{"Product Code":"456645645465","Quantity":0,"Posted":"2020-01-13T12:53:00.000Z"},"createdTime":"2020-01-13T12:53:00.000Z"},{"id":"recii91o67qdmypch","fields":{"Product Code":"123423345645","Quantity":0,"Posted":"2020-01-13T12:53:00.000Z"},"createdTime":"2020-01-13T12:53:00.000Z"},{"id":"rec1YZN3HU6EHIIl8","fields":{"Product Code":"345345453435","Quantity":0,"Posted":"2020-01-13T12:52:53.000Z"},"createdTime":"2020-01-13T12:52:53.000Z"},{"id":"recOGaADlwM9fEVGi","fields":{"Product Code":"567567456534","Quantity":0,"Posted":"2020-01-13T12:52:50.000Z"},"createdTime":"2020-01-13T12:52:50.000Z"}],"primaryColumnName":"Product Code","defaultView":{"id":"viwE8Rb9oxQGAV8tw","name":"Grid view"},"isEmptyDueToFilter":false}],"color":"orange","icon":null};
+            window.appPickerApplicationIdToName = {"appJkRh9E7qNlXOav":"Inventory"};
+            window.appPickerWorkspaceIdToName = {"wspDAvZtigLdl9ysj":"inventory","wspSHARED00000000":"Bases shared with me"};
+        </script>
+
+        <script src="./Airtable API - Inventory_files/regenerator-runtime.min.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+<script src="./Airtable API - Inventory_files/jquery.min.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+<script src="./Airtable API - Inventory_files/jquery-ui-1.11.4.custom.mod6.min.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+<script src="./Airtable API - Inventory_files/angular.min.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+<script src="./Airtable API - Inventory_files/highlight.pack.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+<script src="./Airtable API - Inventory_files/angular-highlightjs.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+<script src="./Airtable API - Inventory_files/application_api_docs.js" nonce="KFFj6OIPSrwE" crossorigin="anonymous"></script>
+        <script nonce="KFFj6OIPSrwE">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-55182693-1', 'auto');
+ga('send', 'pageview');</script>
+
+<script nonce="KFFj6OIPSrwE">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+    analytics.load("nwg4rpj479");
+}}();</script>
+
+</head><body><img height="1" width="1" style="display:none" alt="" src="./Airtable API - Inventory_files/saved_resource">
+
+<img height="1" width="1" style="display:none" alt=" " src="./Airtable API - Inventory_files/adsct">
+
+
+    
+
+    
+        <div ng-app="applicationDocumentationApp" class="ng-scope">
+            <div ng-controller="applicationApiDocumentation" data-api-key="key0k536xA7VpPtEd" data-endpoint-url="https://api.airtable.com" data-latest-api-version="0.1.0" class="ng-scope">
+
+                <div class="topbar">
+                    <div class="titleButton">
+                        
+<div class="appIcon brightColoredBackground" data-color="orange">
+    <div class="symbol">
+        
+            In
+        
+    </div>
+</div>
+
+                        <div class="name ng-binding">Airtable API for "Inventory"</div>
+                        <i class="appPickerIcon icon-angle-down"></i>
+                    </div>
+                    <a target="_blank" rel="noopener noreferrer" class="openApp" href="https://airtable.com/appJkRh9E7qNlXOav">Open base</a>
+                </div>
+
+                <ul class="appPicker menu linkMenu ui-menu ui-widget ui-widget-content" id="ui-id-1" role="menu" tabindex="0">
+    
+        
+        
+            <div class="workspace ui-state-disabled ng-binding ui-menu-item" id="ui-id-2" tabindex="-1" role="menuitem" aria-disabled="true">
+                inventory
+            </div>
+            
+                
+<li class="app menuItemWithLink ui-menu-item" menuitemvalue="appJkRh9E7qNlXOav" id="ui-id-3" tabindex="-1" role="menuitem">
+    <a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs">
+        
+
+<div class="appIcon brightColoredBackground" data-color="orange">
+    <div class="symbol">
+        
+            In
+        
+    </div>
+</div>
+
+        <span class="name ng-binding">Inventory</span>
+    </a>
+</li>
+
+            
+        
+    
+        
+        
+    
+</ul>
+
+
+                <div class="body">
+                    <div class="index">
+                        <div class="sectionWrapper active">
+                            <a class="indexSectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/introduction" section-name="introduction" data-color="orange">Introduction</a>
+                        </div>
+
+
+
+                        <div class="sectionWrapper active">
+                            <a class="indexSectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/ratelimits" section-name="ratelimits" data-color="orange">Rate Limits</a>
+                        </div>
+
+                        <div class="sectionWrapper active">
+                            <a class="indexSectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/authentication" section-name="authentication" data-color="orange">Authentication</a>
+                        </div>
+
+                        <!-- ngRepeat: table in application.tables --><div class="sectionWrapper ng-scope active" ng-repeat="table in application.tables">
+                            <a class="indexSectionLink ng-binding" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home" section-name="table:home" data-color="orange">Home table</a>
+
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:fields" section-name="table:home:fields" data-color="orange">Fields</a>
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:list" section-name="table:home:list" data-color="orange">List records</a>
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:retrieve" section-name="table:home:retrieve" data-color="orange">Retrieve a record</a>
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:create" section-name="table:home:create" data-color="orange">Create records</a>
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:update" section-name="table:home:update" data-color="orange">Update records</a>
+                            <a class="indexSubsectionLink active coloredBackground" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:delete" section-name="table:home:delete" data-color="orange">Delete records</a>
+                        </div><!-- end ngRepeat: table in application.tables -->
+
+                        <div class="sectionWrapper active">
+                            <a class="indexSectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/errors" section-name="errors" data-color="orange">Errors</a>
+
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/errors:successcode" section-name="errors:successcode" data-color="orange">Success code</a>
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/errors:usererrorcodes" section-name="errors:usererrorcodes" data-color="orange">User error codes</a>
+                            <a class="indexSubsectionLink" href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/errors:servererrorcodes" section-name="errors:servererrorcodes" data-color="orange">Server error codes</a>
+                        </div>
+
+                    </div>
+
+                    <div class="docs">
+                        <div class="languageTabs">
+                            <div class="tab">
+                                <input type="radio" id="curl" value="curl" name="languageGroup" ng-model="currentLanguage" class="ng-pristine ng-untouched ng-valid">
+                                <label for="curl">curl</label>
+                            </div>
+                            <div class="tab">
+                                <input type="radio" id="javascript" value="javascript" name="languageGroup" ng-model="currentLanguage" class="ng-pristine ng-untouched ng-valid">
+                                <label for="javascript">JavaScript</label>
+                            </div>
+                            <!-- ngIf: airtableApiKey --><div class="apiKeyToggle ng-scope" ng-if="airtableApiKey">
+                                <label title="Checking this box will reveal your real live API key in the code below -- be sure to keep it secret!">
+                                    <input type="checkbox" ng-model="showApiKey" ng-change="toggleApiKey()" class="ng-pristine ng-untouched ng-valid">show API key
+                                </label>
+                            </div><!-- end ngIf: airtableApiKey -->
+                        </div>
+
+                        <div class="content">
+                            <h1 section-name="introduction">Introduction</h1>
+                            <div class="docSection">
+    <div class="text">
+        <p>
+            The <span class="applicationName ng-binding">Inventory</span> API provides an easy way to integrate your <span class="applicationName ng-binding">Inventory</span> data in Airtable with any external system. The API closely follows REST semantics, uses JSON to encode objects, and relies on standard HTTP codes to signal operation outcomes.
+        </p>
+        <p>
+        	The API documentation below is specifically generated for your base. We recommend that you use the <a target="_blank" rel="noopener noreferrer" href="https://airtable.com/appJkRh9E7qNlXOav">graphical Airtable interface</a> to add a few records of example data for each table. These records will be displayed in the documentation examples generated below.
+        </p>
+        <p>
+            The ID of this base is <code class="ng-binding">appJkRh9E7qNlXOav</code>.
+        </p>
+        <p>
+            <b>Please note</b>: if you make changes to a field (column) name or type, the API interface for those fields will change correspondingly. Therefore, please make sure to update your API implementation accordingly whenever you make changes to your Airtable schema from the graphical interface.
+        </p>
+        <p>
+            Official API client:
+        </p>
+        <ul>
+            <li style="margin-left: 12px;">JavaScript: <a href="https://github.com/Airtable/airtable.js" target="_blank" rel="noopener noreferrer">airtable.js</a> (Node.js + browser)</li>
+        </ul>
+        <p>
+            Community-built API clients:
+        </p>
+        <ul>
+            <li style="margin-left: 12px;">Ruby: <a href="https://github.com/sirupsen/airrecord" target="_blank" rel="noopener noreferrer">airrecord</a></li>
+            <li style="margin-left: 12px;">.NET: <a href="https://github.com/ngocnicholas/airtable.net" target="_blank" rel="noopener noreferrer">airtable.net</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+                            <h1 section-name="ratelimits">Rate Limits</h1>
+                            <div class="docSection">
+    <div class="text">
+        <p>
+            The API is limited to 5 requests per second per base.
+            If you exceed this rate, you will receive a 429 status code and will need to wait 30 seconds before subsequent requests will succeed.
+        </p>
+        <p>
+            The <a href="https://github.com/Airtable/airtable.js" target="_blank" rel="noopener noreferrer">official JavaScript client</a>
+            has built-in retry logic.
+        </p>
+        <p>
+            If you anticipate a higher read volume, we recommend using a caching proxy.
+            This rate limit is the same for all plans and increased limits are not currently available.
+        </p>
+    </div>
+</div>
+
+
+                            <h1 section-name="authentication">Authentication</h1>
+                            <div class="docSection">
+    <div class="text">
+        <p>
+            Airtable uses simple token-based authentication. To generate or manage your API key, visit your <a href="https://airtable.com/account" target="_blank" rel="noopener noreferrer">account</a> page.
+            <strong>Your API key carries the same privileges as your user account, so be sure to keep it secret!</strong>
+            <!-- ngIf: currentLanguage === 'javascript' -->
+        </p>
+
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <p>
+                You can authenticate to the API by providing your API key in the HTTP authorization bearer token header. Alternatively, a slightly lower-security approach is to provide your API key with the <code>api_key</code> query parameter.
+            </p>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <!-- ngIf: currentLanguage === 'javascript' -->
+
+        <p>
+            All API requests must be authenticated and made over HTTPS.
+        </p>
+    </div>
+
+    <div class="code">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <h4>Example using Bearer Token (recommended)</h4>
+
+
+<span hljs="" compile="true"><pre><code class="hljs ruby"><span class="hljs-variable ng-scope">$ </span><span class="ng-binding ng-scope">curl https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home \
+-</span><span class="hljs-constant ng-scope">H</span> <span class="hljs-string ng-binding ng-scope">"Authorization: Bearer YOUR_API_KEY"</span>
+</code></pre></span>
+
+            <h4>Example using query parameter</h4>
+
+<span hljs="" compile="true"><pre><code class="hljs ruby"><span class="hljs-variable ng-scope">$ </span><span class="ng-binding ng-scope">curl https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?api_key=YOUR_API_KEY
+</span></code></pre></span>
+
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+        <!-- ngIf: currentLanguage === 'javascript' -->
+    </div>
+</div>
+
+
+                            <!-- ngRepeat: table in application.tables --><div ng-repeat="table in application.tables" class="ng-scope">
+                                <h1 section-name="table:home" class="ng-binding">Home Table</h1>
+
+                                <div class="docSection fields">
+    <h2 section-name="table:home:fields">Fields</h2>
+    <div class="text">
+        <p>
+            Each record in the <span class="tableName ng-binding">Home</span> table contains the following fields:
+        </p>
+        <div class="fieldsRow header">
+            <h3 class="name">Field Name</h3>
+            <h3 class="type">Type</h3>
+            <h3 class="description">Description</h3>
+        </div>
+    </div>
+</div>
+
+<!-- ngRepeat: column in table.columns --><div class="docSection fields ng-scope" ng-repeat="column in table.columns" ng-controller="fieldController">
+
+    <div class="text">
+        <div class="fieldsRow">
+            <div class="name">
+                <span class="columnName ng-binding">Product Code</span>
+            </div>
+            <ng-switch on="column.type">
+
+                <!-- ngSwitchWhen: text --><span ng-switch-when="text" class="ng-scope">
+                    <ng-switch on="column.typeOptions.validatorName">
+                        <!-- ngSwitchWhen: url -->
+                        <!-- ngSwitchWhen: email -->
+                        <!-- ngSwitchDefault:  --><span ng-switch-default="" class="ng-scope">
+                            <div class="type">
+                                Text
+                            </div>
+                            <div class="description">
+                                <div class="valueType">string</div>
+                                A single line of text.
+                            </div>
+                        </span><!-- end ngSwitchWhen: -->
+                    </ng-switch>
+                </span><!-- end ngSwitchWhen: -->
+
+                <!-- ngSwitchWhen: multilineText -->
+
+                <!-- ngSwitchWhen: number -->
+
+                <!-- ngSwitchWhen: multiSelect -->
+
+                <!-- ngSwitchWhen: select -->
+
+                <!-- ngSwitchWhen: foreignKey -->
+
+                <!-- ngSwitchWhen: button -->
+
+                <!-- ngSwitchWhen: date -->
+
+                <!-- ngSwitchWhen: phone -->
+
+                <!-- ngSwitchWhen: multipleAttachment -->
+
+                <!-- ngSwitchWhen: checkbox -->
+
+                <!-- ngSwitchWhen: formula -->
+
+                <!-- ngSwitchWhen: rollup -->
+
+                <!-- ngSwitchWhen: count -->
+
+                <!-- ngSwitchWhen: lookup -->
+
+                <!-- ngSwitchWhen: autoNumber -->
+
+                <!-- ngSwitchWhen: barcode -->
+
+                <!-- ngSwitchWhen: collaborator -->
+
+                <!-- ngSwitchWhen: multiCollaborator -->
+
+                <!-- ngSwitchWhen: rating -->
+
+                <!-- ngSwitchWhen: richText -->
+
+                <!-- ngSwitchWhen: computation -->
+            </ng-switch>
+        </div>
+    </div>
+
+    <div class="code">
+            <div ng-switch="" on="column.type">
+                <!-- ngSwitchWhen: text --><div ng-switch-when="text" class="ng-scope">
+                    <!-- ngIf: hasSampleDataForColumn() --><div ng-if="hasSampleDataForColumn()" class="ng-scope">
+                        <h4>Example values</h4>
+                        <!-- ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"4015732007155"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"4015732007155"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"http://www.qrcode-monkey.com"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"http://www.qrcode-monkey.com"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"http://www.qrcode-monkey.com"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 -->
+                    </div><!-- end ngIf: hasSampleDataForColumn() -->
+                    <!-- ngIf: !hasSampleDataForColumn() -->
+                </div><!-- end ngSwitchWhen: -->
+                <!-- ngSwitchWhen: multilineText -->
+                <!-- ngSwitchWhen: number -->
+                <!-- ngSwitchWhen: multiSelect -->
+                <!-- ngSwitchWhen: select -->
+                <!-- ngSwitchWhen: foreignKey -->
+                <!-- ngSwitchWhen: button -->
+                <!-- ngSwitchWhen: date -->
+                <!-- ngSwitchWhen: phone -->
+                <!-- ngSwitchWhen: multipleAttachment -->
+                <!-- ngSwitchWhen: checkbox -->
+                <!-- ngSwitchWhen: formula -->
+                <!-- ngSwitchWhen: rollup -->
+                <!-- ngSwitchWhen: count -->
+                <!-- ngSwitchWhen: lookup -->
+                <!-- ngSwitchWhen: autoNumber -->
+                <!-- ngSwitchWhen: barcode -->
+                <!-- ngSwitchWhen: collaborator -->
+                <!-- ngSwitchWhen: multiCollaborator -->
+                <!-- ngSwitchWhen: rating -->
+                <!-- ngSwitchWhen: richText -->
+                <!-- ngSwitchWhen: computation -->
+            </div>
+        </div>
+</div><!-- end ngRepeat: column in table.columns --><div class="docSection fields ng-scope" ng-repeat="column in table.columns" ng-controller="fieldController">
+
+    <div class="text">
+        <div class="fieldsRow">
+            <div class="name">
+                <span class="columnName ng-binding">Quantity</span>
+            </div>
+            <ng-switch on="column.type">
+
+                <!-- ngSwitchWhen: text -->
+
+                <!-- ngSwitchWhen: multilineText -->
+
+                <!-- ngSwitchWhen: number --><span ng-switch-when="number" class="ng-scope">
+                    <ng-switch on="column.typeOptions.format">
+                        <!-- ngSwitchWhen: integer --><span ng-switch-when="integer" class="ng-scope">
+                            <div class="type">
+                                Number
+                            </div>
+                            <div class="description">
+                                <div class="valueType">number</div>
+                                An integer (whole number, e.g. 1, 32, 99). <numberdescription><span class="numberDescription ng-binding">This field only allows positive numbers.</span></numberdescription>
+                            </div>
+                        </span><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchWhen: decimal -->
+                        <!-- ngSwitchWhen: currency -->
+                        <!-- ngSwitchWhen: percent -->
+                        <!-- ngSwitchWhen: percentV2 -->
+                    </ng-switch>
+                </span><!-- end ngSwitchWhen: -->
+
+                <!-- ngSwitchWhen: multiSelect -->
+
+                <!-- ngSwitchWhen: select -->
+
+                <!-- ngSwitchWhen: foreignKey -->
+
+                <!-- ngSwitchWhen: button -->
+
+                <!-- ngSwitchWhen: date -->
+
+                <!-- ngSwitchWhen: phone -->
+
+                <!-- ngSwitchWhen: multipleAttachment -->
+
+                <!-- ngSwitchWhen: checkbox -->
+
+                <!-- ngSwitchWhen: formula -->
+
+                <!-- ngSwitchWhen: rollup -->
+
+                <!-- ngSwitchWhen: count -->
+
+                <!-- ngSwitchWhen: lookup -->
+
+                <!-- ngSwitchWhen: autoNumber -->
+
+                <!-- ngSwitchWhen: barcode -->
+
+                <!-- ngSwitchWhen: collaborator -->
+
+                <!-- ngSwitchWhen: multiCollaborator -->
+
+                <!-- ngSwitchWhen: rating -->
+
+                <!-- ngSwitchWhen: richText -->
+
+                <!-- ngSwitchWhen: computation -->
+            </ng-switch>
+        </div>
+    </div>
+
+    <div class="code">
+            <div ng-switch="" on="column.type">
+                <!-- ngSwitchWhen: text -->
+                <!-- ngSwitchWhen: multilineText -->
+                <!-- ngSwitchWhen: number --><div ng-switch-when="number" class="ng-scope">
+                    <!-- ngIf: hasSampleDataForColumn() --><div ng-if="hasSampleDataForColumn()" class="ng-scope">
+                        <h4>Example values</h4>
+                        <!-- ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs json"><span class="hljs-number">0</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs json"><span class="hljs-number">0</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs json"><span class="hljs-number">0</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs json"><span class="hljs-number">0</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs json"><span class="hljs-number">0</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 -->
+                    </div><!-- end ngIf: hasSampleDataForColumn() -->
+                    <!-- ngIf: !hasSampleDataForColumn() -->
+                </div><!-- end ngSwitchWhen: -->
+                <!-- ngSwitchWhen: multiSelect -->
+                <!-- ngSwitchWhen: select -->
+                <!-- ngSwitchWhen: foreignKey -->
+                <!-- ngSwitchWhen: button -->
+                <!-- ngSwitchWhen: date -->
+                <!-- ngSwitchWhen: phone -->
+                <!-- ngSwitchWhen: multipleAttachment -->
+                <!-- ngSwitchWhen: checkbox -->
+                <!-- ngSwitchWhen: formula -->
+                <!-- ngSwitchWhen: rollup -->
+                <!-- ngSwitchWhen: count -->
+                <!-- ngSwitchWhen: lookup -->
+                <!-- ngSwitchWhen: autoNumber -->
+                <!-- ngSwitchWhen: barcode -->
+                <!-- ngSwitchWhen: collaborator -->
+                <!-- ngSwitchWhen: multiCollaborator -->
+                <!-- ngSwitchWhen: rating -->
+                <!-- ngSwitchWhen: richText -->
+                <!-- ngSwitchWhen: computation -->
+            </div>
+        </div>
+</div><!-- end ngRepeat: column in table.columns --><div class="docSection fields ng-scope" ng-repeat="column in table.columns" ng-controller="fieldController">
+
+    <div class="text">
+        <div class="fieldsRow">
+            <div class="name">
+                <span class="columnName ng-binding">Posted</span>
+            </div>
+            <ng-switch on="column.type">
+
+                <!-- ngSwitchWhen: text -->
+
+                <!-- ngSwitchWhen: multilineText -->
+
+                <!-- ngSwitchWhen: number -->
+
+                <!-- ngSwitchWhen: multiSelect -->
+
+                <!-- ngSwitchWhen: select -->
+
+                <!-- ngSwitchWhen: foreignKey -->
+
+                <!-- ngSwitchWhen: button -->
+
+                <!-- ngSwitchWhen: date -->
+
+                <!-- ngSwitchWhen: phone -->
+
+                <!-- ngSwitchWhen: multipleAttachment -->
+
+                <!-- ngSwitchWhen: checkbox -->
+
+                <!-- ngSwitchWhen: formula --><span ng-switch-when="formula" class="ng-scope">
+                    <ng-switch on="column.typeOptions.displayType">
+                        <!-- ngSwitchWhen: createdTime --><span ng-switch-when="createdTime" class="ng-scope">
+                            <div class="type">
+                                Created time
+                            </div>
+                            <div class="description ng-binding">
+                                <div class="valueType">string</div>
+                                The time the record was created in UTC, e.g. "2015-08-29T07:00:00.000Z".
+                            </div>
+                        </span><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchDefault:  -->
+                    </ng-switch>
+                </span><!-- end ngSwitchWhen: -->
+
+                <!-- ngSwitchWhen: rollup -->
+
+                <!-- ngSwitchWhen: count -->
+
+                <!-- ngSwitchWhen: lookup -->
+
+                <!-- ngSwitchWhen: autoNumber -->
+
+                <!-- ngSwitchWhen: barcode -->
+
+                <!-- ngSwitchWhen: collaborator -->
+
+                <!-- ngSwitchWhen: multiCollaborator -->
+
+                <!-- ngSwitchWhen: rating -->
+
+                <!-- ngSwitchWhen: richText -->
+
+                <!-- ngSwitchWhen: computation -->
+            </ng-switch>
+        </div>
+    </div>
+
+    <div class="code">
+            <div ng-switch="" on="column.type">
+                <!-- ngSwitchWhen: text -->
+                <!-- ngSwitchWhen: multilineText -->
+                <!-- ngSwitchWhen: number -->
+                <!-- ngSwitchWhen: multiSelect -->
+                <!-- ngSwitchWhen: select -->
+                <!-- ngSwitchWhen: foreignKey -->
+                <!-- ngSwitchWhen: button -->
+                <!-- ngSwitchWhen: date -->
+                <!-- ngSwitchWhen: phone -->
+                <!-- ngSwitchWhen: multipleAttachment -->
+                <!-- ngSwitchWhen: checkbox -->
+                <!-- ngSwitchWhen: formula --><div ng-switch-when="formula" class="ng-scope">
+                    <!-- ngIf: hasSampleDataForColumn() --><div ng-if="hasSampleDataForColumn()" class="ng-scope">
+                        <h4>Example values</h4>
+                        <!-- ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"2020-05-19T14:00:57.000Z"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"2020-05-19T14:00:53.000Z"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 --><p ng-repeat="row in table.sampleRows | hasValueFor:column | limitTo:5" class="ng-scope">
+                            <span hljs="" compile="false" language="json" source="row | exampleValueFor : column : table | prettyJson"><pre><code class="hljs ruby json"><span class="hljs-string">"2020-05-19T14:00:46.000Z"</span></code></pre></span>
+                        </p><!-- end ngRepeat: row in table.sampleRows | hasValueFor:column | limitTo:5 -->
+                    </div><!-- end ngIf: hasSampleDataForColumn() -->
+                    <!-- ngIf: !hasSampleDataForColumn() -->
+                </div><!-- end ngSwitchWhen: -->
+                <!-- ngSwitchWhen: rollup -->
+                <!-- ngSwitchWhen: count -->
+                <!-- ngSwitchWhen: lookup -->
+                <!-- ngSwitchWhen: autoNumber -->
+                <!-- ngSwitchWhen: barcode -->
+                <!-- ngSwitchWhen: collaborator -->
+                <!-- ngSwitchWhen: multiCollaborator -->
+                <!-- ngSwitchWhen: rating -->
+                <!-- ngSwitchWhen: richText -->
+                <!-- ngSwitchWhen: computation -->
+            </div>
+        </div>
+</div><!-- end ngRepeat: column in table.columns -->
+
+                                <div class="docSection ng-scope" ng-controller="listExampleController">
+    <h2 section-name="table:home:list" class="ng-binding">List Home records</h2>
+
+    <div class="text">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <p>
+                To list records in <span class="tableName ng-binding">Home</span>, issue a <strong>GET</strong> request to the <span class="tableName ng-binding">Home</span> endpoint.
+            </p>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+        <!-- ngIf: currentLanguage === 'javascript' -->
+        <p>
+            Returned records do not include any fields with "empty" values, e.g. <code>""</code>, <code>[]</code>, or <code>false</code>.
+        </p>
+
+        <!-- ngIf: currentLanguage === 'curl' --><p ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            You can filter, sort, and format the results with the following query parameters. Note that these parameters need to be URL encoded. You can use our <a href="https://codepen.io/airtable/full/rLKkYB?baseId=appJkRh9E7qNlXOav&amp;tableId=tblnj2ZiVCQ2tQ0Qr" target="_blank" rel="noopener noreferrer">API URL encoder tool</a> to help with this. If you are using a helper library like <a href="https://github.com/Airtable/airtable.js" target="_blank" rel="noopener noreferrer">Airtable.js</a>, these parameters will be automatically encoded.
+        </p><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <!-- ngIf: currentLanguage === 'javascript' -->
+
+        <div class="pagination">
+            <div class="paginationName">
+                fields
+                <code class="type">array of strings</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                <p>
+                    Only data for fields whose names are in this list will
+                    be included in the result. If you don't need every field,
+                    you can use this parameter to reduce the amount of data
+                    transferred.
+                </p>
+                <!-- ngIf: table.columns.length > 1 --><ng-if ng-if="table.columns.length &gt; 1" class="ng-scope">
+                    <p>
+                        For example, to only return data from
+                        <span class="columnName ng-binding">Product Code</span> and <span class="columnName ng-binding">Quantity</span>,
+                        <ng-switch on="currentLanguage">
+                            <!-- ngSwitchWhen: curl --><ng-switch-when ng-switch-when="curl" class="ng-scope">send these two query parameters:</ng-switch-when><!-- end ngSwitchWhen: -->
+                            <!-- ngSwitchWhen: javascript -->
+                        </ng-switch>
+                    </p>
+                    <ng-switch on="currentLanguage">
+                        <!-- ngSwitchWhen: curl --><ng-switch-when ng-switch-when="curl" class="ng-scope">
+                            <pre class="ng-binding">fields%5B%5D=Product%20Code&amp;fields%5B%5D=Quantity</pre>
+                        </ng-switch-when><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchWhen: javascript -->
+                    </ng-switch>
+                </ng-if><!-- end ngIf: table.columns.length > 1 -->
+            </div>
+
+            <div class="paginationName">
+                filterByFormula
+                <code class="type">string</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                <p>
+                    A <a href="https://support.airtable.com/hc/en-us/articles/203255215-Formula-Field-Reference" target="_blank" rel="noopener noreferrer">formula</a>
+                    used to filter records. The formula will be evaluated for each record, and if the result is not
+                    <code class="type">0</code>,
+                    <code class="type">false</code>,
+                    <code class="type">""</code>,
+                    <code class="type">NaN</code>,
+                    <code class="type">[]</code>, or
+                    <code class="type">#Error!</code>
+                    the record will be included in the response.
+                </p>
+                <p>
+                    If combined with the <code>view</code> parameter, only records in that view which satisfy the formula will be returned.
+                </p>
+                <p>
+                    For example, to only include records where <span class="columnName ng-binding">Product Code</span> isn't empty, pass in <code class="ng-binding">NOT({Product Code} = '')</code> as a parameter like this:
+                </p>
+                <ng-switch on="currentLanguage">
+                    <!-- ngSwitchWhen: curl --><pre ng-switch-when="curl" class="ng-binding ng-scope">filterByFormula=NOT%28%7BProduct%20Code%7D%20%3D%20%27%27%29</pre><!-- end ngSwitchWhen: -->
+                    <!-- ngSwitchWhen: javascript -->
+                </ng-switch>
+            </div>
+
+            <div class="paginationName">
+                maxRecords
+                <code class="type">number</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                The maximum total number of records that will be returned in your requests. If this value is larger than <code>pageSize</code> (which is 100 by default), you may have to load multiple pages to reach this total. See the Pagination section below for more.
+            </div>
+
+            <div class="paginationName">
+                pageSize
+                <code class="type">number</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                The number of records returned in each request. Must be less than or equal to 100.
+                Default is 100.
+                See the Pagination section below for more.
+            </div>
+
+            <div class="paginationName">
+                sort
+                <code class="type">array of objects</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                <p>
+                    A list of sort objects that specifies how the records will
+                    be ordered. Each sort object must have a <code>field</code>
+                    key specifying the name of the field to sort on, and an
+                    optional <code>direction</code> key that is either <code>"asc"</code>
+                    or <code>"desc"</code>. The default direction is <code>"asc"</code>.
+                </p>
+
+                <p>
+                    The <code>sort</code> parameter overrides the sorting of the view specified in the <code>view</code> parameter. If neither the <code>sort</code> nor the <code>view</code> parameter is included, the order of records is arbitrary.
+                </p>
+
+                <ng-show ng-show="currentLanguage === &#39;curl&#39;">
+                    <p>
+                        For example, to sort records by <span class="columnName ng-binding">Product Code</span>
+                        in descending order, send these two query parameters:
+                    </p>
+                    <pre class="ng-binding">sort%5B0%5D%5Bfield%5D=Product%20Code</pre>
+                    <pre>sort%5B0%5D%5Bdirection%5D=desc</pre>
+                </ng-show>
+
+                <ng-show ng-show="currentLanguage === &#39;javascript&#39;" class="ng-hide">
+                    <p>
+                        For example, to sort records by <span class="columnName ng-binding">Product Code</span>
+                        in descending order, pass in:
+                    </p>
+                    <pre class="ng-binding">[{field: "Product Code", direction: "desc"}]</pre>
+                </ng-show>
+            </div>
+
+            <div class="paginationName">
+                view
+                <code class="type">string</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                The name or ID of a view in the <span class="tableName ng-binding">Home</span> table.
+                If set, only the records in that view will be returned.
+                The records will be sorted according to the order of the view unless the <code>sort</code> parameter is included, which overrides that order.
+                Fields hidden in this view will be returned in the results. To only return a subset of fields, use the <code>fields</code> parameter.
+            </div>
+
+            <div class="paginationName">
+                cellFormat
+                <code class="type">string</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                <p>The format that should be used for cell values. Supported values are:</p>
+
+                <p>
+                    <code>json</code>: cells will be formatted as JSON, depending on the field type.
+                </p>
+                <p>
+                    <code>string</code>: cells will be formatted as user-facing strings, regardless of
+                    the field type. <b>Note:</b> You should not rely on the format of these strings, as it
+                    is subject to change.
+                </p>
+
+                <p>
+                    The default is <code>json</code>.
+                </p>
+            </div>
+
+            <div class="paginationName">
+                timeZone
+                <code class="type">string</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                <p>
+                    The <a href="https://support.airtable.com/hc/en-us/articles/216141558-Supported-timezones-for-SET-TIMEZONE">time zone</a>
+                    that should be used to format dates when using <code>string</code> as the <code>cellFormat</code>. This parameter is
+                    required when using <code>string</code> as the <code>cellFormat</code>.
+                </p>
+            </div>
+
+            <div class="paginationName">
+                userLocale
+                <code class="type">string</code>
+                <span class="optional">optional</span>
+            </div>
+            <div class="paginationDescription">
+                <p>
+                    The <a href="https://support.airtable.com/hc/en-us/articles/220340268-Supported-locale-modifiers-for-SET-LOCALE">user locale</a>
+                    that should be used to format dates when using <code>string</code> as the <code>cellFormat</code>. This parameter is
+                    required when using <code>string</code> as the <code>cellFormat</code>.
+                </p>
+            </div>
+        </div>
+
+        <!-- ngIf: currentLanguage === 'curl' --><p ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            These parameters need to be <a href="https://codepen.io/airtable/full/rLKkYB?baseId=appJkRh9E7qNlXOav&amp;tableId=tblnj2ZiVCQ2tQ0Qr" target="_blank" rel="noopener noreferrer">URL encoded</a>. If you are using a helper library like <a href="https://github.com/Airtable/airtable.js" target="_blank" rel="noopener noreferrer">Airtable.js</a>, they will be automatically encoded.
+        </p><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <h3>Pagination</h3>
+        <p>
+            The server returns one page of records at a time.
+            Each page will contain <code>pageSize</code> records, which
+            is 100 by default.
+        </p>
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <p>
+                If there are more records, the response will contain an <code>offset</code>.
+                To fetch the next page of records, include <code>offset</code> in
+                the next request's parameters.
+            </p>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <!-- ngIf: currentLanguage === 'javascript' -->
+
+        <p>
+            Pagination will stop when you've reached the end of your table. If the <code>maxRecords</code> parameter is passed, pagination will stop once you've reached this maximum.
+        </p>
+    </div>
+    <div class="code">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <h4>Example request</h4>
+<span hljs="" compile="true"><pre><code class="hljs ruby"><span class="ng-scope">curl </span><span class="hljs-string ng-binding ng-scope">"https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?maxRecords=3&amp;view=Grid%20view"</span><span class="ng-scope"> \
+  -</span><span class="hljs-constant ng-scope">H</span> <span class="hljs-string ng-binding ng-scope">"Authorization: Bearer YOUR_API_KEY"</span>
+</code></pre></span>
+
+            <h4>Example response</h4>
+            <!-- ngIf: !table.isEmpty --><div ng-if="!table.isEmpty" class="ng-scope">
+                <div hljs="" source="table | exampleResultSetJson: table.numRecordsToList"><pre><code class="hljs json">{
+    "<span class="hljs-attribute">records</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"recFBwxNdLmnSJXNP"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"reckraxMWGVfxeou6"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"recuSvw4MiOTDOQ6u"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"http://www.qrcode-monkey.com"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-05-19T14:00:57.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-05-19T14:00:57.000Z"</span>
+        </span>}
+    ]</span>,
+    "<span class="hljs-attribute">offset</span>": <span class="hljs-value"><span class="hljs-string">"recuSvw4MiOTDOQ6u"</span>
+</span>}</code></pre></div>
+            </div><!-- end ngIf: !table.isEmpty -->
+            <!-- ngIf: table.isEmpty -->
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+        <!-- ngIf: currentLanguage === 'javascript' -->
+
+    </div>
+
+    <hr>
+
+    <div class="text">
+        <p> Iteration may timeout due to client inactivity or
+            server restarts. In that case, the client will receive a
+            422 response with error message <code>LIST_RECORDS_ITERATOR_NOT_AVAILABLE</code>.
+            It may then restart iteration from the beginning.
+        </p>
+    </div>
+
+    <div class="code">
+    </div>
+</div>
+
+                                <div class="docSection ng-scope" ng-controller="updateExampleController">
+    <h2 section-name="table:home:retrieve" class="ng-binding">Retrieve a Home record</h2>
+
+    <div class="text">
+        <p>
+            <!-- ngIf: currentLanguage === 'curl' --><span ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                To retrieve an existing record in <span class="tableName ng-binding">Home</span> table, issue a <strong>GET</strong> request to the record endpoint.
+            </span><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+        </p>
+        <p>
+            Any "empty" fields (e.g. <code>""</code>, <code>[]</code>, or <code>false</code>) in the record will not be returned.
+        </p>
+        <!-- ngIf: table.columns | areAnyOfType: 'multipleAttachment' -->
+    </div>
+
+    <!-- ngIf: !hasSampleRows -->
+    <!-- ngIf: hasSampleRows --><div class="code ng-scope" ng-if="hasSampleRows">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <h4>Example request</h4>
+<span hljs="" compile="true"><pre><code class="hljs ruby"><span class="ng-binding ng-scope">curl https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home/recFBwxNdLmnSJXNP \
+  -</span><span class="hljs-constant ng-scope">H</span> <span class="hljs-string ng-binding ng-scope">"Authorization: Bearer YOUR_API_KEY"</span>
+</code></pre></span>
+            <h4>Example response</h4>
+            <div hljs="" source="firstSampleRow | prettyJson"><pre><code class="hljs json">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"recFBwxNdLmnSJXNP"</span></span>,
+    "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+        "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+</span>}</code></pre></div>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <!-- ngIf: currentLanguage === 'javascript' -->
+    </div><!-- end ngIf: hasSampleRows -->
+</div>
+
+                                <div class="docSection ng-scope" ng-controller="createExampleController">
+    <h2 section-name="table:home:create" class="ng-binding">Create Home records</h2>
+
+    <div class="text">
+        <p>
+            To create new records,
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                issue a <strong>POST</strong> request to the <span class="tableName ng-binding">Home</span> endpoint.
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+        </p>
+
+        <p>
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                Your request body should include
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+            an array of up to 10 record objects.
+            Each of these objects should have one key, <code>fields</code>, which contains all of your record's cell values by field name.
+            You can include all, some, or none of the field values.
+        </p>
+
+        <p>
+            Returns an array of record objects created if the call succeeded, including record IDs which will uniquely identify the records within <span class="applicationName ng-binding">Inventory</span>.
+        </p>
+
+        <!-- ngIf: table.columns | areAnyOfType: 'multipleAttachment' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'collaborator' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'multiCollaborator' -->
+
+        <!-- ngIf: table.columns | areAnyComputed --><p ng-if="table.columns | areAnyComputed" class="ng-scope">
+            Values for <span ng-bind-html="table.columns | commaSeparatedListHtmlForComputed" class="ng-binding"><span class="columnName">Posted</span></span> are automatically computed by Airtable and cannot be directly created.
+        </p><!-- end ngIf: table.columns | areAnyComputed -->
+
+        <p>
+            The Airtable API will perform best-effort automatic data conversion from string values
+            if the <code>typecast</code> parameter is passed
+            <!-- ngIf: hasSampleRows --><ng-if ng-if="hasSampleRows" class="ng-scope">
+                in (<a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs" ng-click="toggleShowTypecastOption()" class="ng-binding">click to show example</a>).
+            </ng-if><!-- end ngIf: hasSampleRows -->
+            <!-- ngIf: !hasSampleRows -->
+            Automatic conversion is disabled by default to ensure data integrity, but it may be helpful
+            for integrating with 3rd party data sources.
+        </p>
+
+        <p>
+            You can also include a single record object at the top level.
+            <!-- ngIf: hasSampleRows --><a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs" ng-if="hasSampleRows" ng-click="toggleShowSingleRecordOperations()" class="ng-binding ng-scope">Click here to show an example.</a><!-- end ngIf: hasSampleRows -->
+        </p>
+    </div>
+
+    <!-- ngIf: !hasSampleRows -->
+
+    <!-- ngIf: hasSampleRows --><div class="code ng-scope" ng-if="hasSampleRows">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <h4>Example request</h4>
+            <span hljs="" source="createExampleCurlRequest()"><pre><code class="hljs ruby">curl -v -<span class="hljs-constant">X</span> <span class="hljs-constant">POST</span> <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/api.airtable.com/v</span><span class="hljs-number">0</span>/appJkRh9E7qNlXOav/<span class="hljs-constant">Home</span> \
+  -<span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -<span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+  --data <span class="hljs-string">'{
+  "records": [
+    {
+      "fields": {
+        "Product Code": "4015732007155"
+      }
+    },
+    {
+      "fields": {
+        "Product Code": "4015732007155"
+      }
+    }
+  ]
+}'</span></code></pre></span>
+
+            <h4>Example response</h4>
+            <span hljs="" source="createExampleCurlResponse()"><pre><code class="hljs json">{
+    "<span class="hljs-attribute">records</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"recFBwxNdLmnSJXNP"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"reckraxMWGVfxeou6"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span>
+        </span>}
+    ]
+</span>}</code></pre></span>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <!-- ngIf: currentLanguage === 'javascript' -->
+    </div><!-- end ngIf: hasSampleRows -->
+</div>
+
+                                <div class="docSection ng-scope" ng-controller="updateExampleController">
+    <h2 section-name="table:home:update" class="ng-binding">Update Home records</h2>
+    <div class="text">
+        <p>
+            To update <span class="tableName ng-binding">Home</span> records,
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                issue a request to the <span class="tableName ng-binding">Home</span> endpoint.
+                A <strong>PATCH</strong> request will only update the fields you specify, leaving the rest as they were.
+                A <strong>PUT</strong> request will perform a destructive update and clear all unspecified cell values.
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+            <!-- ngIf: hasSampleRows --><ng-if ng-if="hasSampleRows" class="ng-scope">
+                The example at the right uses the
+                <!-- ngIf: isShowingDestructiveUpdate -->
+                <!-- ngIf: !isShowingDestructiveUpdate --><ng-if ng-if="!isShowingDestructiveUpdate" class="ng-scope">
+                    non-destructive
+                    <!-- ngIf: currentLanguage === 'curl' --><strong ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">PATCH</strong><!-- end ngIf: currentLanguage === 'curl' -->
+                    <!-- ngIf: currentLanguage === 'javascript' -->
+                </ng-if><!-- end ngIf: !isShowingDestructiveUpdate -->
+                method.
+                <a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs" ng-click="toggleIsShowingDestructiveUpdate()">
+                    Click here to show a
+                    <!-- ngIf: isShowingDestructiveUpdate -->
+                    <!-- ngIf: !isShowingDestructiveUpdate --><ng-if ng-if="!isShowingDestructiveUpdate" class="ng-scope">
+                        destructive
+                        <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                            <strong>PUT</strong> request.
+                        </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+                        <!-- ngIf: currentLanguage === 'javascript' -->
+                    </ng-if><!-- end ngIf: !isShowingDestructiveUpdate -->
+                </a>
+            </ng-if><!-- end ngIf: hasSampleRows -->
+        </p>
+
+        <p>
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                Your request body should include
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+            an array of up to 10 record objects.
+            Each of these objects should have an <code>id</code> property representing the record ID and a <code>fields</code> property which contains all of your record's cell values by field name.
+            You can include all, some, or none of the field values.
+        </p>
+
+        <!-- ngIf: table.columns | areAnyOfType: 'multipleAttachment' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'foreignKey' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'collaborator' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'multiCollaborator' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'multiSelect' -->
+
+        <!-- ngIf: table.columns | areAnyOfType: 'multilineText' -->
+
+        <!-- ngIf: table.columns | areAnyComputed --><p ng-if="table.columns | areAnyComputed" class="ng-scope">
+            Values for <span ng-bind-html="table.columns | commaSeparatedListHtmlForComputed" class="ng-binding"><span class="columnName">Posted</span></span> are automatically computed by Airtable and cannot be directly updated.
+            You cannot clear these, even with a
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                <code>PUT</code> request.
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+        </p><!-- end ngIf: table.columns | areAnyComputed -->
+
+        <p>
+            Automatic data conversion for update actions can be enabled via <code>typecast</code> parameter.
+            See <a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs#curl/table:home:create">create record</a> for details.
+        </p>
+
+        <p>
+            You can also include a single record object at the top level.
+            <!-- ngIf: hasSampleRows --><a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs" ng-if="hasSampleRows" ng-click="toggleShowSingleRecordOperations()" class="ng-binding ng-scope">Click here to show an example.</a><!-- end ngIf: hasSampleRows -->
+        </p>
+    </div>
+
+    <!-- ngIf: !hasSampleRows -->
+    <!-- ngIf: hasSampleRows --><div class="code ng-scope" ng-if="hasSampleRows">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <h4>Example request</h4>
+            <span hljs="" source="updateExampleCurlRequest()"><pre><code class="hljs ruby">curl -v -<span class="hljs-constant">X</span> <span class="hljs-constant">PATCH</span> <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/api.airtable.com/v</span><span class="hljs-number">0</span>/appJkRh9E7qNlXOav/<span class="hljs-constant">Home</span> \
+  -<span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -<span class="hljs-constant">H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+  --data <span class="hljs-string">'{
+  "records": [
+    {
+      "id": "recFBwxNdLmnSJXNP",
+      "fields": {
+        "Product Code": "4015732007155"
+      }
+    },
+    {
+      "id": "reckraxMWGVfxeou6",
+      "fields": {
+        "Product Code": "4015732007155"
+      }
+    }
+  ]
+}'</span></code></pre></span>
+
+            <h4>Example response</h4>
+            <span hljs="" source="updateExampleCurlResponse()"><pre><code class="hljs json">{
+    "<span class="hljs-attribute">records</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"recFBwxNdLmnSJXNP"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:04.000Z"</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"reckraxMWGVfxeou6"</span></span>,
+            "<span class="hljs-attribute">fields</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">Product Code</span>": <span class="hljs-value"><span class="hljs-string">"4015732007155"</span></span>,
+                "<span class="hljs-attribute">Posted</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">createdTime</span>": <span class="hljs-value"><span class="hljs-string">"2020-08-04T08:19:02.000Z"</span>
+        </span>}
+    ]
+</span>}</code></pre></span>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+        <!-- ngIf: currentLanguage === 'javascript' -->
+    </div><!-- end ngIf: hasSampleRows -->
+</div>
+
+                                <div class="docSection ng-scope" ng-controller="deleteExampleController">
+    <h2 section-name="table:home:delete" class="ng-binding">Delete Home records</h2>
+    <div class="text">
+        <p>
+            To delete <span class="tableName ng-binding">Home</span> records,
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                issue a <strong>DELETE</strong> request to the <span class="tableName ng-binding">Home</span> endpoint.
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+        </p>
+
+        <!-- ngIf: currentLanguage === 'curl' --><p ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            Your request should include a URL-encoded array of up to 10 record IDs to delete.
+        </p><!-- end ngIf: currentLanguage === 'curl' -->
+        <!-- ngIf: currentLanguage === 'javascript' -->
+
+        <p>
+            You can also
+            <!-- ngIf: currentLanguage === 'curl' --><ng-if ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+                issue a <strong>DELETE</strong> request to the record endpoint
+            </ng-if><!-- end ngIf: currentLanguage === 'curl' -->
+            <!-- ngIf: currentLanguage === 'javascript' -->
+            to delete a single record.
+            <!-- ngIf: hasSampleRows --><a href="https://airtable.com/appJkRh9E7qNlXOav/api/docs" ng-if="hasSampleRows" ng-click="toggleShowSingleRecordOperations()" class="ng-binding ng-scope">Click here to show an example.</a><!-- end ngIf: hasSampleRows -->
+        </p>
+    </div>
+
+    <!-- ngIf: !hasSampleRows -->
+
+    <!-- ngIf: hasSampleRows --><div class="code ng-scope" ng-if="hasSampleRows">
+        <!-- ngIf: currentLanguage === 'curl' --><div ng-if="currentLanguage === &#39;curl&#39;" class="ng-scope">
+            <h4>Example request</h4>
+            <span hljs="" source="deleteExampleCurlRequest()"><pre><code class="hljs ruby">curl -v -<span class="hljs-constant">X</span> <span class="hljs-constant">DELETE</span> <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/api.airtable.com/v</span><span class="hljs-number">0</span>/appJkRh9E7qNlXOav/<span class="hljs-constant">Home</span> \
+  -<span class="hljs-constant">H</span> <span class="hljs-string">"Authorization: Bearer YOUR_API_KEY"</span> \
+  -<span class="hljs-constant">G</span> \
+  --data-urlencode <span class="hljs-string">'records[]=recFBwxNdLmnSJXNP'</span> \
+  --data-urlencode <span class="hljs-string">'records[]=reckraxMWGVfxeou6'</span></code></pre></span>
+
+            <h4>Example response</h4>
+            <span hljs="" source="deleteExampleCurlResponse()"><pre><code class="hljs json">{
+    "<span class="hljs-attribute">records</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"recFBwxNdLmnSJXNP"</span></span>,
+            "<span class="hljs-attribute">deleted</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"reckraxMWGVfxeou6"</span></span>,
+            "<span class="hljs-attribute">deleted</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+        </span>}
+    ]
+</span>}</code></pre></span>
+        </div><!-- end ngIf: currentLanguage === 'curl' -->
+
+        <!-- ngIf: currentLanguage === 'javascript' -->
+    </div><!-- end ngIf: hasSampleRows -->
+</div>
+
+                            </div><!-- end ngRepeat: table in application.tables -->
+
+                            <h1 section-name="errors">Errors</h1>
+                            <div class="docSection errorCodes">
+    <div class="text">
+        <p>
+            The <span class="applicationName ng-binding">Inventory</span> API follows HTTP status code semantics. 2xx codes signify success, 4xx mostly represent user error, 5xx generally correspond to a server error. The error messages will return a JSON-encoded body that contains <code>error</code> and <code>message</code> fields. Those will provide specific error condition and human-readable message to identify what caused the error.
+        </p>
+    </div>
+
+    <h2 section-name="errors:successcode">
+        Success code
+    </h2>
+    <div class="text">
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>200</code>
+            </div>
+            <div class="message">
+                OK
+            </div>
+            <div class="description">
+                Request completed successfully.
+            </div>
+        </div>
+    </div>
+
+    <h2 section-name="errors:usererrorcodes">
+        User error codes
+    </h2>
+    <div class="text">
+        <p>
+            These errors generally indicate a problem on the client side. If you are getting one of these, check your code and the request details.
+        </p>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>400</code>
+            </div>
+            <div class="message">
+                Bad Request
+            </div>
+            <div class="description">
+                The request encoding is invalid; the request can't be parsed as a valid JSON.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>401</code>
+            </div>
+            <div class="message">
+                Unauthorized
+            </div>
+            <div class="description">
+                Accessing a protected resource without authorization or with invalid credentials.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>402</code>
+            </div>
+            <div class="message">
+                Payment Required
+            </div>
+            <div class="description">
+                The account associated with the API key making requests hits a quota that can be increased by upgrading the Airtable account plan.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>403</code>
+            </div>
+            <div class="message">
+                Forbidden
+            </div>
+            <div class="description">
+                Accessing a protected resource with API credentials that don't have access to that resource.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>404</code>
+            </div>
+            <div class="message">
+                Not Found
+            </div>
+            <div class="description">
+                Route or resource is not found. This error is returned when the request hits an undefined route, or if the resource doesn't exist (e.g. has been deleted).
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>413</code>
+            </div>
+            <div class="message">
+                Request Entity Too Large
+            </div>
+            <div class="description">
+                The request exceeded the maximum allowed payload size. You shouldn't encounter this under normal use.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>422</code>
+            </div>
+            <div class="message">
+                Invalid Request
+            </div>
+            <div class="description">
+                The request data is invalid. This includes most of the base-specific validations. You will receive a detailed error message and code pointing to the exact issue.
+            </div>
+        </div>
+    </div>
+
+    <h2 section-name="errors:servererrorcodes">
+        Server error codes
+    </h2>
+    <div class="text">
+        <p>
+            These errors generally represent an error on our side. In the event of a 5xx error code, detailed information about the error will be automatically recorded, and Airtable's developers will be notified.
+        </p>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>500</code>
+            </div>
+            <div class="message">
+                Internal Server Error
+            </div>
+            <div class="description">
+                The server encountered an unexpected condition.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>502</code>
+            </div>
+            <div class="message">
+                Bad Gateway
+            </div>
+            <div class="description">
+                Airtable's servers are restarting or an unexpected outage is in progress. You should generally not receive this error, and requests are safe to retry.
+            </div>
+        </div>
+        <div class="codesRow">
+            <div class="statusCode">
+                <code>503</code>
+            </div>
+            <div class="message">
+                Service Unavailable
+            </div>
+            <div class="description">
+                The server could not process your request in time. The server could be temporarily unavailable, or it could have timed out processing your request. You should retry the request with backoffs.
+            </div>
+        </div>
+    </div>
+</div>
+
+                        </div>
+
+                        <div class="codeBackground"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+</body></html>
