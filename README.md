@@ -1,4 +1,4 @@
-# Coding Challenge - React Native
+# Coding Challenge
 
 Inventory is a small utility app that could be used in a logistics company. It has two use cases:
 
