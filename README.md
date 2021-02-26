@@ -34,7 +34,7 @@ Project management has created tasks related to the app and put them on the Kanb
 **Description:** On the app's home screen the user cannot scroll beyond 100 items. The list of products stops after 100 items, despite more items being stored in the backend. The app should load remaining items when the user scrolls to the end of the list.
 
 **Tipp:** 
-Airtable's REST API allows for 100 items to be fetched in one request. In order to show all results, create a `fetchMoreInventory` thunk action with pagination using the `offset` parameter.
+Airtable's REST API allows for 100 items to be fetched in one request. If there are more items, the response will contain an offset. To fetch the next page of items, include offset in the next request's parameters. Create a `fetchMoreInventory` thunk action that enables pagination using the `offset` parameter.
 
 ---
 
