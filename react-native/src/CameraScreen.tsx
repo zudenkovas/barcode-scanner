@@ -1,17 +1,18 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StackScreenProps } from "@react-navigation/stack";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { Camera } from 'expo-camera';
 import * as Permissions from "expo-permissions"
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FAB } from "react-native-paper";
-import { SafeAreaView, NavigationInjectedProps } from "react-navigation";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import { actions } from "./store/inventory";
 
 
-export default (props: NavigationInjectedProps) => {
-  const [hasCameraPermission, setHasCameraPermission] = useState(null);
+export default (props: StackScreenProps<{}>) => {
+  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,26 +1,28 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React from "react";
+import React, { useEffect } from "react";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import { Appbar, DataTable, FAB } from "react-native-paper";
-import {
-  NavigationEvents,
-  SafeAreaView,
-  NavigationInjectedProps
-} from "react-navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { selectors, actions } from "./store/inventory";
 import { RootState } from "./store";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StackScreenProps } from "@react-navigation/stack";
 
 
-export default (props: NavigationInjectedProps) => {
+export default (props: StackScreenProps<{}>) => {
   const fetching = useSelector((state: RootState) => state.inventory.fetching);
   const inventory = useSelector(selectors.selectInventory);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      dispatch(actions.fetchInventory());
+    });
+    return unsubscribe;
+  }, [props.navigation]);
+
   return (
     <View style={{ flex: 1 }}>
-      <NavigationEvents onWillFocus={() => dispatch(actions.fetchInventory())} />
-
       <Appbar.Header>
         <Appbar.Content title="Inventory" />
       </Appbar.Header>
