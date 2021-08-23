@@ -30,9 +30,9 @@ Project management has created tasks related to the app and put them on the Kanb
 
 **Type:** Feature
 
-**Subject:** Redesign of product items 
+**Subject:** Product list redesign 
 
-**Description:** The representation of the product list has been updated by our designers (link to inspectable design prototype below). Create a `ProductItem` component that implements the new product item. 
+**Description:** The representation of the home screen's product list has been updated by our designers (link to inspectable design prototype below). Create a `ProductItem` component that implements the new design. 
 
 - Show name (truncated to 1 line)
 - Show date
@@ -42,7 +42,7 @@ Project management has created tasks related to the app and put them on the Kanb
 - Show categories as individual "Tags" 
 
 **Tipp:** 
-The relevant product data is already provided by the inventory state. 
+All product data is provided by the inventory state. Use the design prototype to inspect design requirements as well as to export image assets.
 
 **Links:** 
 https://www.figma.com/file/K8J4g5y1QnYZonwgFisvXK/Coding-Challenge?node-id=0%3A1
