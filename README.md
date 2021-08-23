@@ -36,9 +36,10 @@ Project management has created tasks related to the app and put them on the Kanb
 
 - Show name (truncated to 1 line)
 - Show date
-- Show image
-- Show categories as individual "Tags" 
 - If date is within last 7 days, show a "New" icon 
+- Show image
+- If image is missing, show a placeholder
+- Show categories as individual "Tags" 
 
 **Tipp:** 
 The relevant product data is already provided by the inventory state. 
