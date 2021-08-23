@@ -77,7 +77,7 @@ export default (props: StackScreenProps<{}>) => {
 const styles = StyleSheet.create({
   fab: {
     position: "absolute",
-    bottom: 0,
+    bottom: 16,
     width: "100%",
     flex: 1,
     alignItems: "center"

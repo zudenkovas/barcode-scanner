@@ -44,7 +44,7 @@ export const inventoryReducer: Reducer<InventoryState, RootAction> = (
           byId[item.id] = item;
           return byId;
         }, {}),
-        allIds: action.payload.map(item => item.id)
+        allIds: action.payload.map((item) => item.id)
       };
     case FETCH_INVENTORY_ERROR:
       return {
@@ -67,16 +67,14 @@ export const inventoryReducer: Reducer<InventoryState, RootAction> = (
   }
 };
 
-
 const FETCH_INVENTORY = "FETCH_INVENTORY";
 const FETCH_INVENTORY_SUCCESS = "FETCH_INVENTORY_SUCCESS";
-const FETCH_INVENTORY_ERROR ="FETCH_INVENTORY_ERROR";
-const SEND_INVENTORY ="SEND_INVENTORY";
+const FETCH_INVENTORY_ERROR = "FETCH_INVENTORY_ERROR";
+const SEND_INVENTORY = "SEND_INVENTORY";
 const SEND_INVENTORY_SUCCESS = "SEND_INVENTORY_SUCCESS";
 const SEND_INVENTORY_ERROR = "SEND_INVENTORY_ERROR";
 
-interface FetchInventoryAction
-  extends Action<typeof FETCH_INVENTORY> {}
+interface FetchInventoryAction extends Action<typeof FETCH_INVENTORY> {}
 interface FetchInventorySuccessAction
   extends Action<typeof FETCH_INVENTORY_SUCCESS> {
   payload: Inventory[];
@@ -86,14 +84,12 @@ interface FetchInventoryErrorAction
   error: boolean;
   payload: Error;
 }
-interface SendInventoryAction
-  extends Action<typeof SEND_INVENTORY> {}
+interface SendInventoryAction extends Action<typeof SEND_INVENTORY> {}
 interface SendInventorySuccessAction
   extends Action<typeof SEND_INVENTORY_SUCCESS> {
   payload: Inventory;
 }
-interface SendInventoryErrorAction
-  extends Action<typeof SEND_INVENTORY_ERROR> {
+interface SendInventoryErrorAction extends Action<typeof SEND_INVENTORY_ERROR> {
   error: boolean;
   payload: Error;
 }
@@ -106,79 +102,84 @@ export type InventoryAction =
   | SendInventoryErrorAction;
 
 export const actions = {
-  fetchInventory: (): ThunkAction<
-    void,
-    RootState,
-    undefined,
-    InventoryAction
-  > => dispatch => {
-    dispatch({ type: FETCH_INVENTORY });
-    fetch(
-      "https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?offset=0&maxRecords=100&view=Grid%20view",
-      {
-        headers: {
-          Authorization: config.Authorization
-        }
-      }
-    )
-      .then(response => response.json())
-      .then(body => {
-        dispatch({
-          type: FETCH_INVENTORY_SUCCESS,
-          payload: body.records
-        });
-      })
-      .catch(e => {
-        dispatch({
-          type: FETCH_INVENTORY_ERROR,
-          error: true,
-          payload: e
-        });
-      });
-  },
-
-  sendInventory: (
-    data: string,
-    goBack: () => void
-  ): ThunkAction<void, RootState, undefined, InventoryAction> => (
-    dispatch,
-    getState
-  ) => {
-    if (getState().inventory.sending) {
-      return;
-    }
-    dispatch({ type: SEND_INVENTORY });
-    fetch(
-      "https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?maxRecords=100&view=Grid%20view",
-      {
-        method: "POST",
-        headers: {
-          Authorization: config.Authorization,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          fields: {
-            "Product Code": data
+  fetchInventory:
+    (): ThunkAction<void, RootState, undefined, InventoryAction> =>
+    (dispatch) => {
+      dispatch({ type: FETCH_INVENTORY });
+      fetch(
+        "https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?offset=0&maxRecords=100&view=Grid%20view",
+        {
+          headers: {
+            Authorization: config.Authorization
           }
+        }
+      )
+        .then((response) => response.json())
+        .then((body) => {
+          dispatch({
+            type: FETCH_INVENTORY_SUCCESS,
+            payload: body.records
+          });
         })
-      }
-    )
-      .then(response => response.json())
-      .then(body => {
-        dispatch({ type: SEND_INVENTORY_SUCCESS, payload: body });
-        goBack();
-      })
-      .catch(e => {
-        dispatch({
-          type: SEND_INVENTORY_ERROR,
-          error: true,
-          payload: e
+        .catch((e) => {
+          dispatch({
+            type: FETCH_INVENTORY_ERROR,
+            error: true,
+            payload: e
+          });
         });
-      });
-  }
+    },
+
+  sendInventory:
+    (
+      data: string,
+      goBack: () => void
+    ): ThunkAction<void, RootState, undefined, InventoryAction> =>
+    (dispatch, getState) => {
+      if (getState().inventory.sending) {
+        return;
+      }
+      dispatch({ type: SEND_INVENTORY });
+      fetch(
+        `https://world.openfoodfacts.org/api/v0/product/${data}.json`
+      )
+        .then((response) => response.json())
+        .then((body) => {
+          return fetch(
+            "https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?maxRecords=100&view=Grid%20view",
+            {
+              method: "POST",
+              headers: {
+                Authorization: config.Authorization,
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                fields: {
+                  "Product Code": data,
+                  "Product Name": body?.product["product_name"],
+                  "Product Categories": body?.product["categories"],
+                  "Product Image": body?.product["image_url"]
+                }
+              })
+            }
+          );
+        })
+        .then((response) => response.json())
+        .then((body) => {
+          dispatch({ type: SEND_INVENTORY_SUCCESS, payload: body });
+          goBack();
+        })
+        .catch((e) => {
+          dispatch({
+            type: SEND_INVENTORY_ERROR,
+            error: true,
+            payload: e
+          });
+        });
+    }
 };
 
 export const selectors = {
   selectInventory: (state: RootState) =>
-    state.inventory.allIds.map(id => state.inventory.byId[id])
+    state.inventory.allIds.map((id) => state.inventory.byId[id])
 };

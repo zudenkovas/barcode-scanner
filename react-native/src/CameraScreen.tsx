@@ -1,8 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
+import { Camera } from "expo-camera";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { Camera } from 'expo-camera';
-import * as Permissions from "expo-permissions"
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FAB } from "react-native-paper";
@@ -12,35 +11,34 @@ import { actions } from "./store/inventory";
 
 
 export default (props: StackScreenProps<{}>) => {
-  const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(null);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const checkPermissions = async() => {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA);
-      setHasCameraPermission(status === "granted" )
+      const { status } = await Camera.requestPermissionsAsync();
+      setHasPermission(status === "granted" )
     }
     checkPermissions();
   }, []);
 
-  if (hasCameraPermission === null) {
+  if (hasPermission === null) {
     return <View />;
-  } else if (hasCameraPermission === false) {
+  } else if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   } else {
     return (
       <Camera
         style={{ flex: 1 }}
-        onBarCodeScanned={code => dispatch(actions.sendInventory(code.data, props.navigation.goBack))}
-        barCodeScannerSettings={{
-          barCodeTypes: [
-            BarCodeScanner.Constants.BarCodeType.upc_a,
-            BarCodeScanner.Constants.BarCodeType.upc_e,
-            BarCodeScanner.Constants.BarCodeType.upc_ean,
-            BarCodeScanner.Constants.BarCodeType.ean13,
-            BarCodeScanner.Constants.BarCodeType.ean8
-          ]
-        }}
+        onBarCodeScanned={code => dispatch(actions.sendInventory(code.data, () => props.navigation.goBack()))}
+        // barCodeTypes={[
+        //     BarCodeScanner.Constants.BarCodeType.upc_a,
+        //     BarCodeScanner.Constants.BarCodeType.upc_e,
+        //     BarCodeScanner.Constants.BarCodeType.upc_ean,
+        //     BarCodeScanner.Constants.BarCodeType.ean13,
+        //     BarCodeScanner.Constants.BarCodeType.ean8
+        //   ]
+        // }
       >
         <View style={styles.fab}>
           <SafeAreaView>
@@ -65,7 +63,7 @@ export default (props: StackScreenProps<{}>) => {
 const styles = StyleSheet.create({
   fab: {
     position: "absolute",
-    bottom: 0,
+    bottom: 16,
     width: "100%",
     flex: 1,
     alignItems: "center"
