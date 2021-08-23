@@ -23,9 +23,32 @@ The backend is a REST API provided by Airtable.
 
 Project management has created tasks related to the app and put them on the Kanban board. Pick an implementation and try to solve one of the tasks within a reasonable amount of time (~2h).
 
+
 ---
 
 ### INV-1
+
+**Type:** Feature
+
+**Subject:** Redesign of product items 
+
+**Description:** The representation of the product list has been updated by our designers (link to inspectable design prototype below). Create a `ProductItem` component that implements the new product item. 
+
+- Show name (truncated to 1 line)
+- Show date
+- Show image
+- Show categories as individual "Tags" 
+- If date is within last 7 days, show a "New" icon 
+
+**Tipp:** 
+The relevant product data ia already provided by the inventory state. 
+
+**Links:** 
+https://www.figma.com/file/K8J4g5y1QnYZonwgFisvXK/Coding-Challenge?node-id=0%3A1
+
+---
+
+### INV-2
 
 **Type:** Bug
 
@@ -36,17 +59,6 @@ Project management has created tasks related to the app and put them on the Kanb
 **Tipp:** 
 Airtable's REST API allows for 100 items to be fetched in one request. If there are more items, the response will contain an offset. To fetch the next page of items, include offset in the next request's parameters. Create a `fetchMoreInventory` thunk action that enables pagination using the `offset` parameter.
 
----
-
-### INV-2
-
-**Type:** Feature
-
-**Subject:** Filter input for products list (client-side)
-
-**Description:** It should be possible for the user to filter the list of products on the app's home screen. Add a text input on top of the product list that filters the list of products for matching product codes as you type (product code contains filter string). The filtering should not make a backend request. A reset button lets you clear the text input and return to the unfiltered products list.
-
-**Tipp:** Create a `setFilter` action along with a search input on top of the home screen to enable the user to filter for inventory items by product code. The same action can be used to reset the products list
 
 ---
 

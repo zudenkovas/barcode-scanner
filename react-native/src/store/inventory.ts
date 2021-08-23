@@ -9,6 +9,9 @@ export interface Inventory {
   fields: {
     Posted: string;
     "Product Code": string;
+    "Product Name": string;
+    "Product Image": string;
+    "Product Categories": string;
   };
 }
 
@@ -43,7 +46,7 @@ export const inventoryReducer: Reducer<InventoryState, RootAction> = (
         byId: action.payload.reduce((byId, item) => {
           byId[item.id] = item;
           return byId;
-        }, {}),
+        }, {} as {[id: string]: Inventory}),
         allIds: action.payload.map((item) => item.id)
       };
     case FETCH_INVENTORY_ERROR:
