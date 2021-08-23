@@ -41,7 +41,7 @@ Project management has created tasks related to the app and put them on the Kanb
 - If date is within last 7 days, show a "New" icon 
 
 **Tipp:** 
-The relevant product data ia already provided by the inventory state. 
+The relevant product data is already provided by the inventory state. 
 
 **Links:** 
 https://www.figma.com/file/K8J4g5y1QnYZonwgFisvXK/Coding-Challenge?node-id=0%3A1
