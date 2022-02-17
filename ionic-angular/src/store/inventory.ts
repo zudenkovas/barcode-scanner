@@ -79,7 +79,7 @@ export class InventoryActions {
           },
         }
       )
-        .then((response) => response.json())
+        .then((response: any) => response.json())
         .then((body) => {
           dispatch({
             type: FETCH_INVENTORY_SUCCESS,
@@ -106,7 +106,11 @@ export class InventoryActions {
       fetch(`https://world.openfoodfacts.org/api/v0/product/${data}.json`)
         .then((response) => response.json())
         .then((body) => {
-          fetch(
+          const name = body.product && body.product['product_name'];
+          const categories = body.product && body.product['categories'];
+          const image = body.product && body.product['image_url'];
+
+          return fetch(
             'https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?maxRecords=100&view=Grid%20view',
             {
               method: 'POST',
@@ -117,15 +121,15 @@ export class InventoryActions {
               body: JSON.stringify({
                 fields: {
                   'Product Code': data,
-                  'Product Name': body?.product['product_name'],
-                  'Product Categories': body?.product['categories'],
-                  'Product Image': body?.product['image_url'],
+                  'Product Name': name,
+                  'Product Categories': categories,
+                  'Product Image': image,
                 },
               }),
             }
           );
         })
-        .then((response) => response.json())
+        .then((response: any) => response.json())
         .then((body) => {
           dispatch({ type: SEND_INVENTORY_SUCCESS, payload: body });
           dispatch(this.fetchInventory());
