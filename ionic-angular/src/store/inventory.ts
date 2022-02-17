@@ -24,7 +24,7 @@ const initialState = {
   fetching: false,
   sending: false,
   byId: {},
-  allIds: []
+  allIds: [],
 };
 
 const FETCH_INVENTORY = 'FETCH_INVENTORY';
@@ -62,80 +62,82 @@ export type InventoryAction =
   | SendInventoryErrorAction;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InventoryActions {
   constructor() {}
 
-  fetchInventory = (): ThunkAction<
-    void,
-    RootState,
-    undefined,
-    InventoryAction
-  > => dispatch => {
-    dispatch({ type: FETCH_INVENTORY });
-    fetch(
-      'https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?offset=0&maxRecords=100&view=Grid%20view',
-      {
-        headers: {
-          Authorization: config.Authorization
+  fetchInventory =
+    (): ThunkAction<void, RootState, undefined, InventoryAction> =>
+    (dispatch) => {
+      dispatch({ type: FETCH_INVENTORY });
+      fetch(
+        'https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?offset=0&maxRecords=100&view=Grid%20view',
+        {
+          headers: {
+            Authorization: config.Authorization,
+          },
         }
-      }
-    )
-      .then(response => response.json())
-      .then(body => {
-        dispatch({
-          type: FETCH_INVENTORY_SUCCESS,
-          payload: body.records
-        });
-      })
-      .catch(e => {
-        dispatch({
-          type: FETCH_INVENTORY_ERROR,
-          error: true,
-          payload: e
-        });
-      });
-  };
-
-  sendInventory = (
-    data: string
-  ): ThunkAction<void, RootState, undefined, InventoryAction> => (
-    dispatch,
-    getState
-  ) => {
-    if (getState().inventory.sending) {
-      return;
-    }
-    dispatch({ type: SEND_INVENTORY });
-    fetch(
-      'https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?maxRecords=100&view=Grid%20view',
-      {
-        method: 'POST',
-        headers: {
-          Authorization: config.Authorization,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          fields: {
-            'Product Code': data
-          }
+      )
+        .then((response) => response.json())
+        .then((body) => {
+          dispatch({
+            type: FETCH_INVENTORY_SUCCESS,
+            payload: body.records,
+          });
         })
-      }
-    )
-      .then(response => response.json())
-      .then(body => {
-        dispatch({ type: SEND_INVENTORY_SUCCESS, payload: body });
-        dispatch(this.fetchInventory());
-      })
-      .catch(e => {
-        dispatch({
-          type: SEND_INVENTORY_ERROR,
-          error: true,
-          payload: e
+        .catch((e) => {
+          dispatch({
+            type: FETCH_INVENTORY_ERROR,
+            error: true,
+            payload: e,
+          });
         });
-      });
-  };
+    };
+
+  sendInventory =
+    (data: string): ThunkAction<void, RootState, undefined, InventoryAction> =>
+    (dispatch, getState) => {
+      if (getState().inventory.sending) {
+        return;
+      }
+      dispatch({ type: SEND_INVENTORY });
+
+      fetch(`https://world.openfoodfacts.org/api/v0/product/${data}.json`)
+        .then((response) => response.json())
+        .then((body) => {
+          fetch(
+            'https://api.airtable.com/v0/appJkRh9E7qNlXOav/Home?maxRecords=100&view=Grid%20view',
+            {
+              method: 'POST',
+              headers: {
+                Authorization: config.Authorization,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                fields: {
+                  'Product Code': data,
+                  'Product Name': body?.product['product_name'],
+                  'Product Categories': body?.product['categories'],
+                  'Product Image': body?.product['image_url'],
+                },
+              }),
+            }
+          );
+        })
+        .then((response) => response.json())
+        .then((body) => {
+          dispatch({ type: SEND_INVENTORY_SUCCESS, payload: body });
+          dispatch(this.fetchInventory());
+        })
+        .catch((e) => {
+          dispatch({
+            type: SEND_INVENTORY_ERROR,
+            error: true,
+            payload: e,
+          });
+        });
+    };
 }
 
 export const inventoryReducer: Reducer<InventoryState, InventoryAction> = (
@@ -146,7 +148,7 @@ export const inventoryReducer: Reducer<InventoryState, InventoryAction> = (
     case FETCH_INVENTORY:
       return {
         ...state,
-        fetching: true
+        fetching: true,
       };
     case FETCH_INVENTORY_SUCCESS:
       return {
@@ -156,23 +158,23 @@ export const inventoryReducer: Reducer<InventoryState, InventoryAction> = (
           byId[item.id] = item;
           return byId;
         }, {}),
-        allIds: action.payload.map(item => item.id)
+        allIds: action.payload.map((item) => item.id),
       };
     case FETCH_INVENTORY_ERROR:
       return {
         ...state,
-        fetching: false
+        fetching: false,
       };
     case SEND_INVENTORY:
       return {
         ...state,
-        sending: true
+        sending: true,
       };
     case SEND_INVENTORY_SUCCESS:
     case SEND_INVENTORY_ERROR:
       return {
         ...state,
-        sending: false
+        sending: false,
       };
     default:
       return state;
@@ -181,6 +183,6 @@ export const inventoryReducer: Reducer<InventoryState, InventoryAction> = (
 
 export const selectors = {
   selectInventory: (state: RootState) =>
-    state.inventory.allIds.map(id => state.inventory.byId[id]),
-  selectFetching: (state: RootState) => state.inventory.fetching
+    state.inventory.allIds.map((id) => state.inventory.byId[id]),
+  selectFetching: (state: RootState) => state.inventory.fetching,
 };
