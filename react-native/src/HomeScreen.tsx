@@ -1,13 +1,19 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useEffect } from "react";
-import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  View,
+  FlatList
+} from "react-native";
 import { Appbar, DataTable, FAB } from "react-native-paper";
 import { useSelector, useDispatch } from "react-redux";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StackScreenProps } from "@react-navigation/stack";
 import { selectors, actions } from "./store/inventory";
 import { RootState } from "./store";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StackScreenProps } from "@react-navigation/stack";
-
+import ProductItem from "./components/ProductItem";
 
 export default (props: StackScreenProps<{}>) => {
   const fetching = useSelector((state: RootState) => state.inventory.fetching);
@@ -15,7 +21,7 @@ export default (props: StackScreenProps<{}>) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = props.navigation.addListener('focus', () => {
+    const unsubscribe = props.navigation.addListener("focus", () => {
       dispatch(actions.fetchInventory());
     });
     return unsubscribe;
@@ -26,45 +32,24 @@ export default (props: StackScreenProps<{}>) => {
       <Appbar.Header>
         <Appbar.Content title="Inventory" />
       </Appbar.Header>
-
-      <ScrollView
-        style={{ flex: 1 }}
+      <FlatList
+        data={inventory}
+        keyExtractor={(_, index) => String(index)}
+        renderItem={({ item, index }) => (
+          <ProductItem key={index} inventoryRecord={item} />
+        )}
         refreshControl={
           <RefreshControl
             refreshing={fetching}
             onRefresh={() => dispatch(actions.fetchInventory())}
           />
         }
-      >
-        <SafeAreaView>
-          <DataTable>
-            <DataTable.Header>
-              <DataTable.Title>Product Code</DataTable.Title>
-              <DataTable.Title numeric>Scan Date</DataTable.Title>
-            </DataTable.Header>
-            {inventory.map((record, index) => (
-              <DataTable.Row key={index}>
-                <DataTable.Cell>
-                  {record.fields["Product Code"]}
-                </DataTable.Cell>
-                <DataTable.Cell numeric>
-                  {new Date(record.fields.Posted).toLocaleDateString()}{" "}
-                  {new Date(record.fields.Posted).toLocaleTimeString()}
-                </DataTable.Cell>
-              </DataTable.Row>
-            ))}
-          </DataTable>
-        </SafeAreaView>
-      </ScrollView>
-
+        style={styles.inventoryWrapper}
+      />
       <SafeAreaView style={styles.fab}>
         <FAB
           icon={() => (
-            <MaterialCommunityIcons
-              name="barcode"
-              size={24}
-              color="#0B5549"
-            />
+            <MaterialCommunityIcons name="barcode" size={24} color="#0B5549" />
           )}
           label="Scan Product"
           onPress={() => props.navigation.navigate("Camera")}
@@ -72,7 +57,7 @@ export default (props: StackScreenProps<{}>) => {
       </SafeAreaView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   fab: {
@@ -81,5 +66,9 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     alignItems: "center"
+  },
+  inventoryWrapper: {
+    flex: 1,
+    padding: 16
   }
 });
